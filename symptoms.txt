@@ -3,4 +3,3 @@
  3 fever
  4 headache
  5 bodypains
- 6 legpains
