@@ -394,7 +394,7 @@ void person::menu(){
 }
 void person::Manual(){
     fstream file;
-    cout << "\n-----------------------------------------------------------------------------------------------------";
+    cout << "\n----------------------------------------------------------------------------------------------";
     cout << "\n------------------------------------- Add Customer Details ---------------------------------------------" << endl;
 
     cout << "\t\tEnter the First name :" << endl;
@@ -445,7 +445,13 @@ void person::random(){
     symptom SYMP;
     disease DIS;
     person p;
-void admin(){
+
+/*----------------------------------------------------------------------------------------------- */ 
+class admin
+{
+public:
+//    admin();
+    void menu(){
     int option;
     Start:
     cout << "\n================================================================================================" << endl;
@@ -465,39 +471,98 @@ void admin(){
     cin >> option ;
     switch (option)
     {
+    
     case 1:
-// creating data
+    // creating data
     p.menu();
     goto Start;
     break;
+
     case 2:
     //tablet data
     goto Start;
-        break;    
+    break;    
+
     case 3:
     //Symptoms data
     SYMP.menu();
     goto Start;
-        break;
+    break;
+    
     case 4:
     // Diseases data
     DIS.menu();
     goto Start;
-        break;        
+    break;        
+
     case 9:
-        break;
+    break;
+    
     case 0:
-        exit(0);
-        break;
+    exit(0);
+    break;
     default:
-        cout << "\n\t\t\t Invalid choice... Please Try Again..";
+    cout << "\n\t\t\t Invalid choice... Please Try Again..";
     goto Start;
     }
-}
+    }
+};
+/*----------------------------------------------------------------------------------------------- */ 
+class receptionist
+{
+public:
+//    receptionist();
+void menu(){
+    int option;
+    Start:
+    cout << "\n================================================================================================" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t|        IIITs Pharmacy      |" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t 1. Creating data of Customer" << endl;
+    cout << "\t\t\t 2. Medicine data" << endl;
+    cout << "\t\t\t 9. Back" << endl;
+    cout << "\t\t\t 0. Exit" << endl;
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "Enter Your Choose: ";
+    cin >> option ;
+    switch (option)
+    {
+    
+    case 1:
+    // creating data
+    p.menu();
+    goto Start;
+    break;
+
+    case 2:
+    //tablet data
+    goto Start;
+    break;    
+       
+    case 9:
+    //back
+    break;
+    
+    case 0:
+    exit(0);
+    break;
+    default:
+    cout << "\n\t\t\t Invalid choice... Please Try Again..";
+    goto Start;
+    }
+    }
+
+};
+/*----------------------------------------------------------------------------------------------- */ 
 
 int main()
 {   
     int option;
+    admin a;
+    receptionist r;
     //radom generation
     srand(time(NULL));
 login:
@@ -517,12 +582,13 @@ login:
     switch (option)
     {
     case 1:
-    //admin usage
-    admin();
+    //admin login
+    a.menu();
     break;
 
     case 2:
-    //receptionist usage
+    //receptionist login
+    r.menu();
     break;
     
     case 3:
