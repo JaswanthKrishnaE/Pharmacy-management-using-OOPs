@@ -3,6 +3,18 @@
 #include <stdlib.h>
 
 using namespace std;
+//Global declaration of first name and last name
+    string arrfn[25]={"Amelia","Beatta","Camille","Dalialah""Evelyn","Fatyma","Garnett",
+                    "Harmoni","Ileana","Jainel","Kalidas","Luna","Mahavira","Nartana",
+                    "Oliver","Patrick","Quiterie","Raimundo","Scarlett","Teresa",
+                    "Ulbrich","Valencia","Wachowicz","Xiang","Yacovone","Zadra"};
+    string arrln[25]={"Abella","Batista","Cristina","Devorah""Edith","Franciska","Gorge",
+                    "Hermoine","Isebella","Jane","Katrina","Lisbon","Martha","Nick",
+                    "O'conner","Priya","Quin","Rregina","Samnatha","Tejaswini",
+                    "Urvasi","Varsha","Whitney","Xiang","Yolanda","Zahra"};
+
+/*----------------------------------------------------------------------------------------------- */ 
+
 class symptom
 {
 private:
@@ -296,6 +308,7 @@ void disease::search() // search data of symptom
     cout << "search "<< endl;
 }
 /*----------------------------------------------------------------------------------------------- */
+/*
 class createManual
 {
 private:
@@ -318,7 +331,7 @@ void createManual::manualInput(){
     cout << "\t\tEnter the date of order :"<< endl;
     cin >> da>>mo>>ye;
 }
-
+*/
 
 /*----------------------------------------------------------------------------------------------- */
 class person
@@ -327,18 +340,10 @@ private:
     string firstName;
     string lastName;
     string fullName;
-    long int contactNo;
+    long long int contactNo;
     int date,d,m,y;
     int arrS[30]={0};
     int arrD[20]={0};
-    string arrfn[25]={"Amelia","Beatta","Camille","Dalialah""Evelyn","Fatyma","Garnett",
-                    "Harmoni","Ileana","Jainel","Kalidas","Luna","Mahavira","Nartana",
-                    "Oliver","Patrick","Quiterie","Raimundo","Scarlett","Tajima",
-                    "Ulbrich","Valencia","Wachowicz","Xiang","Yacovone","Zadra"};
-    string arrln[25]={"Abella","Baidta","Cristina","Devorah""Edith","Franciska","G",
-                    "Hermoine","Isebella","Jane","Katrina","Leonard","Martha","Nick",
-                    "O'conner","Priya","Quin","Rregina","Samnatha","Tejaswini",
-                    "Urvasi","Varsha","Whitney","Xiang","Yolanda","Zahra"};
 
 public:
 //    create();
@@ -350,7 +355,7 @@ public:
 void person::menu(){
     int choice;
     char x;
-    start:
+    data:
     cout << "\n================================================================================================" << endl;
     cout << "\t\t\t-----------------------------" << endl;
     cout << "\t\t\t|         CREATE DATA        |" << endl;
@@ -370,11 +375,11 @@ void person::menu(){
     {
     case 1:
         Manual();
-       goto start;
+       goto data;
         break;
     case 2:
         random();
-    goto start;
+    goto data;
         break;
     case 3:
        // back
@@ -387,21 +392,36 @@ void person::menu(){
     }
 }
 void person::Manual(){
+    fstream file;
+    cout << "\n-----------------------------------------------------------------------------------------------------";
+    cout << "\n------------------------------------- Add Customer Details ---------------------------------------------" << endl;
+
     cout << "\t\tEnter the First name :" << endl;
     cin>>firstName;
     cout << "\t\tEnter the Last name :"<< endl;
     cin >> lastName;
     cout << "\t\tEnter the Contact Number :"<< endl;
     cin >> contactNo;
-    cout << "\t\tEnter the date of approach[dd/mm/yyyy] :"<< endl;
-    cin >> d>>m>>y;
+    cout << "\t\tEnter the date of approach[dd] :"<< endl;
+    cin >> d;
+    cout << "\t\tEnter the date of approach[mm] :"<< endl;
+    cin >> m;
+    cout << "\t\tEnter the date of approach[yyyy] :"<< endl;
+    cin >> y;
+
     fullName = firstName+lastName;
     date = d*1000000+m*10000+y;
+    file.open("draft.txt", ios::app | ios::out);
+    file << " " << firstName << " " << lastName<< " " << fullName<< " " <<contactNo << " " << d << " " << m << " " << y <<" " << date<< "\n";
+    file.close();
 
 }
 void person::random(){
+    fstream file;
     firstName=arrfn[rand()%26];
     lastName=arrln[rand()%26];
+    fullName = firstName+lastName;
+    contactNo=((6+rand()%4)*1000000000);
     y = 2019+rand()%2;
     m =rand()%13;
     if(m==1||m==3||m==5||m==7||m==8||m==10||m==12){
@@ -414,6 +434,9 @@ void person::random(){
         d=rand()%31;
     }
     date = d*1000000+m*10000+y;
+    file.open("draft.txt", ios::app | ios::out);
+    file << " " << firstName << " " << lastName<< " " << fullName<< " " <<contactNo << " " << d << " " << m << " " << y <<" " << date<< "\n";
+    file.close();
 
 }
 /*----------------------------------------------------------------------------------------------- */ 
