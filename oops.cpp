@@ -23,12 +23,13 @@ private:
     string symp;
 
 public:
-    void menu();
-    void insert();
-    void display();
-    void search();
+    void menus();
+    void inserts();
+    void displays();
+    void searchs();
+    void finds(int i);
 };
-void symptom::menu()
+void symptom::menus()
 {
     start:
     int choice;
@@ -53,7 +54,7 @@ void symptom::menu()
     {
     case 1:
     ins:
-        insert();
+        inserts();
         cout << "\n\t\t\t Add Another Symptom to database (Y,N): ";
         cin >> x;
         if(x=='y' || x=='Y'){
@@ -62,11 +63,11 @@ void symptom::menu()
        goto start;
         break;
     case 2:
-        display();
+        displays();
        goto start;
         break;
     case 3:
-        search();
+        searchs();
        goto start;
         break;
     case 9:
@@ -80,7 +81,7 @@ void symptom::menu()
     }
    }
    
-void symptom::insert() // add symptom details
+void symptom::inserts() // add symptom details
 {
     fstream file;
     cout << "\n------------------------------------------------------------------------------------------------";
@@ -95,7 +96,7 @@ void symptom::insert() // add symptom details
     file.close();
 }
 
-void symptom::display() // display symptoms details
+void symptom::displays() // display symptoms details
 {
 
     fstream file;
@@ -126,7 +127,7 @@ void symptom::display() // display symptoms details
     file.close();
 }
 
-void symptom::search() // search data of symptom
+void symptom::searchs() // search data of symptom
 {
     fstream file;
     int found = 0;
@@ -163,7 +164,25 @@ void symptom::search() // search data of symptom
         }
         file.close();
     }
-    cout << "search "<< endl;
+}
+void symptom::finds(int i){
+    fstream file1;
+    int no;
+        file1.open("symptoms.txt", ios::in);
+        no=i;
+        file1 >> sNo >> symp;
+
+        while (!file1.eof())
+        {
+            if (sNo == no)
+            {
+            cout << "\t\t\tSymptom: " << symp << endl;
+            }
+            file1 >> sNo >> symp;
+        }
+        
+        file1.close();
+
 }
 /*----------------------------------------------------------------------------------------------- */ 
 //class disease
@@ -174,13 +193,14 @@ private:
     string dis;    
 public:
 //  disease();
-    void menu();
-    void insert();
-    void display();
-    void search();
+    void menud();
+    void insertd();
+    void displayd();
+    void searchd();
+    void findd(int i);
     
 };
-void disease::menu()
+void disease::menud()
 {
     int choice;
     char x;
@@ -205,7 +225,7 @@ void disease::menu()
     {
     case 1:
     ins:
-        insert();
+        insertd();
         cout << "\n\t\t\t Add Another Disease to database (Y,N): ";
         cin >> x;
         if(x=='y' || x=='Y'){
@@ -214,11 +234,11 @@ void disease::menu()
         goto start;
         break;
     case 2:
-        display();
+        displayd();
     goto start;
         break;
     case 3:
-        search();
+        searchd();
     goto start;
         break;
     case 9:
@@ -232,7 +252,7 @@ void disease::menu()
     }
    }
 
-   void disease::insert() // add symptom details
+   void disease::insertd() // add symptom details
 {
     fstream file;
     cout << "\n------------------------------------------------------------------------------------------------";
@@ -247,7 +267,7 @@ void disease::menu()
     file.close();
 }
 
-void disease::display() // display symptoms details
+void disease::displayd() // display symptoms details
 {
 
     fstream file;
@@ -278,7 +298,7 @@ void disease::display() // display symptoms details
     }
     file.close();
 }
-void disease::search() // search data of symptom
+void disease::searchd() // search data of symptom
 {
     fstream file;
     int found = 0;
@@ -316,36 +336,33 @@ void disease::search() // search data of symptom
         }
         file.close();
     }
-    cout << "search "<< endl;
+
 }
-/*----------------------------------------------------------------------------------------------- */
-/*
-class createManual
-{
-private:
-    string fName;
-    string lName;
-    long int cNo;
-    int da,mo,ye;    
-public:
-//    createManual();
-    void manualInput();
-    void gendate();  
-};
-void createManual::manualInput(){
-    cout << "\t\tEnter the First name :" << endl;
-    cin>>fName;
-    cout << "\t\tEnter the Last name :"<< endl;
-    cin >> lName;
-    cout << "\t\tEnter the Contact Number :"<< endl;
-    cin >> cNo;
-    cout << "\t\tEnter the date of order :"<< endl;
-    cin >> da>>mo>>ye;
+void disease::findd(int i){
+    int no;
+    fstream file2;
+    file2.open("diseases.txt", ios::in);
+    no=i;
+    file2 >> dNo >> dis;
+        while (!file2.eof())
+        {
+            if (dNo == no)
+            {
+            cout << "\t\t\tDisease: " << dis << endl;
+            }
+            file2 >> dNo >> dis;
+        }
+        file2.close();
+        
+
 }
-*/
+/*----------------------------------------------------------------------------------------------- */ 
+    //initializing all classes
+    symptom SYMP;
+    disease DIS;
 
 /*----------------------------------------------------------------------------------------------- */
-class person
+class person:public symptom,public disease
 {
 private:
     string firstName;
@@ -353,16 +370,83 @@ private:
     string fullName;
     long long int contactNo;
     int date,d,m,y;
-    int arrS[30]={0};
-    int arrD[20]={0};
+    int ns=0,nd=0;
+    int arrS[11]={0};
+    int arrD[2]={0};
 
 public:
 //    create();
     void menu();
     void Manual();
     void random();
+    void MgenerateSD();
+    void RgenerateSD();
+    void printdata();
+
     
 };
+void person::MgenerateSD(){
+    int choice;
+    char x;
+    data:
+    cout << "\n================================================================================================" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t|  ADD SYMPTOMS OR DISEASE  |" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t 1. Symptom" << endl;
+    cout << "\t\t\t 2. Disease" << endl;
+    cout << "\t\t\t 9. Back" << endl;
+    cout << "\t\t\t 0. Exit" << endl;
+
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "Enter Your Choose: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+       goto data;
+        break;
+    case 2:
+    goto data;
+        break;
+    case 9:
+       // back
+        break;
+    case 0:
+    exit(0);
+        break;
+    default:
+        cout << "\n\t\t\t Invalid choice... Please Try Again..";
+    }
+}
+
+void person::RgenerateSD(){
+    //symptoms or disease
+    int x= rand()%2;
+    int t;
+    //if x=0 symptoms
+    //if x=1 disease
+    if(x==0){
+        ns=2+rand()%5;
+        for (int i = 0; i < ns; ++i)
+        {
+            t=1+rand()%10;
+            arrS[t]=1;
+        }
+    }
+    if(x==1){
+             nd=1+rand()%2;
+        for (int i = 0; i < nd; ++i)
+        {
+            t=1+rand()%2;
+            arrD[t]=1;
+        }  
+    }
+
+}
 void person::menu(){
     int choice;
     char x;
@@ -386,10 +470,30 @@ void person::menu(){
     {
     case 1:
         Manual();
-       goto data;
+        for (int i = 0; i < 11; ++i)
+        {
+            arrS[i]=0;
+        }        
+        for (int i = 0; i < 2; ++i)
+        {
+            arrD[i]=0;
+        }
+        MgenerateSD();
+        printdata();
+        goto data;
         break;
     case 2:
         random();
+       for (int i = 0; i < 11; ++i)
+        {
+            arrS[i]=0;
+        }        
+        for (int i = 0; i < 3; ++i)
+        {
+            arrD[i]=0;
+        }
+        RgenerateSD();
+        printdata();
     goto data;
         break;
     case 9:
@@ -422,9 +526,7 @@ void person::Manual(){
 
     fullName = firstName+lastName;
     date = d*1000000+m*10000+y;
-    file.open("draft.txt", ios::app | ios::out);
-    file << " " << firstName << " " << lastName<< " " << fullName<< " " <<contactNo << " " << d << " " << m << " " << y <<" " << date<< "\n";
-    file.close();
+
 
 }
 void person::random(){
@@ -432,7 +534,7 @@ void person::random(){
     firstName=arrfn[rand()%26];
     lastName=arrln[rand()%26];
     fullName = firstName+lastName;
-    contactNo=((6+rand()%4)*1000000000);
+    contactNo=((6+rand()%4)*100000);
     y = 2019+rand()%2;
     m =rand()%13;
     if(m==1||m==3||m==5||m==7||m==8||m==10||m==12){
@@ -445,17 +547,34 @@ void person::random(){
         d=rand()%31;
     }
     date = d*1000000+m*10000+y;
-    file.open("draft.txt", ios::app | ios::out);
-    file << " " << firstName << " " << lastName<< " " << fullName<< " " <<contactNo << " " << d << " " << m << " " << y <<" " << date<< "\n";
-    file.close();
 
 }
-/*----------------------------------------------------------------------------------------------- */ 
-    //initializing all classes
-    symptom SYMP;
-    disease DIS;
-    person p;
+void person::printdata(){
+    int found=0;
+    int no;
+    cout << "First name :" <<firstName<<endl;
+    cout << "Last name :" <<lastName<<endl;
+    cout << "Full name :" <<fullName<<endl;
+    cout << "Contact no. :" <<contactNo<<endl;
+    cout << "Date of order :" <<date<<endl;
+    //print symptoms
+    for (int i = 0; i < 11; ++i)
+    {
+    if (arrS[i]==1){
+        finds(i);
+    }
+    }
 
+    //print disease
+    for (int i = 0; i < 3; ++i)
+    {
+        if (arrD[i]==1){
+        findd(i);
+    }
+    }
+}
+
+    person p;
 /*----------------------------------------------------------------------------------------------- */ 
 class admin
 {
@@ -495,13 +614,13 @@ public:
 
     case 3:
     //Symptoms data
-    SYMP.menu();
+    SYMP.menus();
     goto Start;
     break;
     
     case 4:
     // Diseases data
-    DIS.menu();
+    DIS.menud();
     goto Start;
     break;        
 
@@ -518,11 +637,11 @@ public:
     }
 };
 /*----------------------------------------------------------------------------------------------- */ 
-class receptionist
-{
-public:
-//    receptionist();
-void menu(){
+    class receptionist
+    {
+    public:
+    //    receptionist();
+    void menu(){
     int option;
     Start:
     cout << "\n================================================================================================" << endl;

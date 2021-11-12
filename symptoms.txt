@@ -1,5 +1,10 @@
  1 cold
  2 cough
  3 fever
- 4 headache
- 5 bodypains
+ 4 bodypains
+ 5 headache
+ 6 stomachache
+ 7 eyeburn
+ 8 vomiting
+ 9 dizziness
+ 10 sorethroat
