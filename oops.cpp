@@ -557,12 +557,66 @@ void menu(){
 
 };
 /*----------------------------------------------------------------------------------------------- */ 
+class customer
+{
+public:
+//    customer();
+    void menu(){
+    int option;
+    Start:
+    cout << "\n================================================================================================" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t|        IIITs Pharmacy      |" << endl;
+    cout << "\t\t\t-----------------------------" << endl;
+    cout << "\t\t\t 1. Total Transactions Made" << endl;
+    cout << "\t\t\t 2. Latest Transaction" << endl;
+    cout << "\t\t\t 3. All Transaction" << endl;
+    cout << "\t\t\t 9. Back" << endl;
+    cout << "\t\t\t 0. Exit" << endl;
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
+    cout << "\t\t\t---------------------------" << endl;
+    cout << "Enter Your Choose: ";
+    cin >> option ;
+    switch (option)
+    {
+    
+    case 1:
+//Total Transactions Made
+    goto Start;
+    break;
+
+    case 2:
+//Latest Transaction
+    goto Start;
+    break;
+
+    case 3:
+//All Transaction
+    goto Start;
+    break;    
+       
+    case 9:
+    //back
+    break;
+    
+    case 0:
+    exit(0);
+    break;
+    default:
+    cout << "\n\t\t\t Invalid choice... Please Try Again..";
+    goto Start;
+    }
+    }
+};
+/*----------------------------------------------------------------------------------------------- */ 
 
 int main()
 {   
     int option;
     admin a;
     receptionist r;
+    customer c;
     //radom generation
     srand(time(NULL));
 login:
@@ -593,6 +647,7 @@ login:
     
     case 3:
     //customer login
+    c.menu();
     break;   
 
     case 0:
