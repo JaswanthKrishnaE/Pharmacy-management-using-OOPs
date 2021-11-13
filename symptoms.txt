@@ -8,3 +8,30 @@
  8 vomiting
  9 dizziness
  10 sorethroat
+ 11 sugar
+ 12 diarrhea
+ 13 muscleaches
+ 14 breathingtrouble
+ 15 suddenvisionproblem
+ 16 rashes
+ 17 swelling
+ 18 jointpains
+ 19 bloodvomit
+ 20 anxiety
+ 21 allergi
+ 22 constipation
+ 23 acne
+ 24 dehydartion
+ 25 snoring
+ 26 foodpoison
+ 27 hearingloss
+ 28 tierdness
+ 29 heartpalpitations
+ 30 palecomplextion
+ 31 yelloweyes
+ 32 redeyes
+ 33 hairloss
+ 34 disfagia
+ 35 itchy
+ 36 bp
+ 37 indigestion

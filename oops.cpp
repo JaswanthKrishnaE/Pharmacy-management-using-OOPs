@@ -51,7 +51,8 @@ void symptom::menus()
     cout << "\t\t\t---------------------------" << endl;
     cout << "t\t\tEnter Your Choose: ";
     cin >> choice;
-
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
     switch (choice)
     {
     case 1:
@@ -207,200 +208,16 @@ void symptom::searchs() // search data of symptom
     }
 
 /*----------------------------------------------------------------------------------------------- */ 
-//class disease
-class disease
-    {
-    private:
-    int dNo;
-    string dis;    
-    public:
-    //  disease();
-    void menud();
-    void insertd();
-    void displayd();
-    void searchd();
-    void findd(int i);
-    int getdNo(string sy);
+
+class draft
+{
+public:
+//    draft();
     
-    };
-    void disease::menud()
-    {
-    int choice;
-    char x;
-    start:
-    cout << "\n================================================================================================" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t|       ADDING  DISEASE    |" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t 1. Enter New Disease" << endl;
-    cout << "\t\t\t 2. Display Diseases" << endl;
-    cout << "\t\t\t 3. Search Disease" << endl;
-    cout << "\t\t\t 9. Back" << endl;
-    cout << "\t\t\t 0. Exit" << endl;
-
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
-    cin >> choice;
-
-    switch (choice)
-    {
-    case 1:
-    ins:
-        insertd();
-        cout << "\n\t\t\t Add Another Disease to database (Y,N): ";
-        cin >> x;
-        if(x=='y' || x=='Y'){
-            goto ins;
-        }
-        goto start;
-        break;
-    case 2:
-        displayd();
-    goto start;
-        break;
-    case 3:
-        searchd();
-    goto start;
-        break;
-    case 9:
-       // back
-        break;
-    case 0:
-    exit(0);
-        break;
-    default:
-        cout << "\n\t\t\t Invalid choice... Please Try Again..";
-    }
-   }
-
-   void disease::insertd() // add symptom details
-    {
-    fstream file;
-    cout << "\n------------------------------------------------------------------------------------------------";
-    cout << "\n---------------------------------- Add Disease Details -----------------------------------------" << endl;
-    
-    cout << "\t\t\tEnter Serial no.: ";
-    cin >> dNo;
-    cout << "\t\t\t Disease: ";
-    cin >> dis;
-    file.open("diseases.txt", ios::app | ios::out);
-    file << " " << dNo << " " << dis<< "\n";
-    file.close();
-    }   
-
-    void disease::displayd() // display symptoms details
-    {
-
-    fstream file;
-    int total = 1;
-    cout << "\n------------------------------------------------------------------------------------------------";
-    cout << "\n----------------------------------    Disease  Data    -----------------------------------------" << endl;
-
-    file.open("diseases.txt", ios::in);
-    if (!file)
-    {
-        cout << "\n\t\t\tNo Data Is Present...";
-        file.close();
-    }
-    else
-    {
-        file >> dNo >> dis;
-        while (!file.eof())
-        {
-            cout << "\n\n\t\t\t Disease No.: " << total++ << endl;
-            cout << "\t\t\tEnter Serial no.: " << dNo << endl;
-            cout << "\t\t\tDisease: " << dis << endl;
-            file >> dNo >> dis;
-        }
-        if (total == 0)
-        {
-            cout << "\n\t\t\tNo Data Is Present...";
-        }
-    }
-    file.close();
-    }
-    void disease::searchd() // search data of symptom
-    {
-    fstream file;
-    int found = 0;
-    file.open("diseases.txt", ios::in);
-    if (!file)
-    {
-        cout << "\n------------------------------------------------------------------------------------------------";
-        cout << "\n---------------------------------- Disease Search Data -----------------------------------------" << endl;
-
-        cout << "\n\t\t\t No Data Is Present...";
-    }
-    else
-    {
-        int no;
-        cout << "\n------------------------------------------------------------------------------------------------";
-        cout << "\n---------------------------------- Disease Search Data -----------------------------------------" << endl;
-
-        cout << "\n Enter S No. of Disease Which You Want to Search: ";
-        cin >> no;
-        file >> dNo >> dis;
-
-        while (!file.eof())
-        {
-            if (dNo == no)
-            {
-            cout << "\t\t\tEnter Serial no.: " << dNo << endl;
-            cout << "\t\t\tDisease: " << dis << endl;
-                found++;
-            }
-            file >> dNo >> dis;
-        }
-        if (found == 0)
-        {
-            cout << "\n\t\t\tsymptom Roll No. Not Found...";
-        }
-        file.close();
-    }
-
-    }
-    void disease::findd(int i){
-    int no;
-    fstream file2;
-    file2.open("diseases.txt", ios::in);
-    no=i;
-    file2 >> dNo >> dis;
-        while (!file2.eof())
-        {
-            if (dNo == no)
-            {
-            cout << "\t\t\tDisease: " << dis << endl;
-            }
-            file2 >> dNo >> dis;
-        }
-        file2.close();
-        }
-    int disease::getdNo(string sy){
-    fstream file2;
-    int t;
-    file2.open("diseases.txt", ios::in);
-    file2 >> dNo >> dis;
-        while (!file2.eof())
-        {
-            if (dis == sy)
-            {
-                t=dNo;
-            }
-            file2 >> dNo >> dis;
-        }
-        file2.close();        
-    return t;
-    }
-
-/*----------------------------------------------------------------------------------------------- */ 
-    //initializing all classes
-    symptom SYMP;
-    disease DIS;
+};
 
 /*----------------------------------------------------------------------------------------------- */
-class person:public symptom,public disease
+class person:public symptom
 {
 private:
     string firstName;
@@ -408,9 +225,8 @@ private:
     string fullName;
     long long int contactNo;
     int date,d,m,y;
-    int ns=0,nd=0;
-    int arrS[11]={0};
-    int arrD[2]={0};
+    int ns=0;
+    int arrS[37]={0};
 
 public:
     void menu();
@@ -440,32 +256,26 @@ public:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tEnter Your Choose: ";
     cin >> choice;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
 
     switch (choice)
     {
     case 1:
         Manual();
-        for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 37; ++i)
         {
             arrS[i]=0;
         }        
-        for (int i = 0; i < 3; ++i)
-        {
-            arrD[i]=0;
-        }
         MgenerateSD();
         printdata();
         break;
     case 2:
         random();
-       for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 37; ++i)
         {
             arrS[i]=0;
         }        
-        for (int i = 0; i < 3; ++i)
-        {
-            arrD[i]=0;
-        }
         RgenerateSD();
         printdata();
         break;
@@ -510,10 +320,10 @@ public:
 
     cout << "\n================================================================================================" << endl;
     cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t|  ADD SYMPTOMS OR DISEASE  |" << endl;
+    cout << "\t\t\t|ADD SYMPTOMS OR PRESCRIPTION|" << endl;
     cout << "\t\t\t-----------------------------" << endl;
     cout << "\t\t\t 1. Symptom" << endl;
-    cout << "\t\t\t 2. Disease" << endl;
+    cout << "\t\t\t 2. Prescription" << endl;
     cout << "\t\t\t 0. Exit" << endl;
 
     cout << "\t\t\t---------------------------" << endl;
@@ -521,6 +331,8 @@ public:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tEnter Your Choose: ";
     cin >> choice;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
 
     switch (choice)
     {
@@ -535,28 +347,14 @@ public:
         if(x=='y' || x=='Y'){
         goto synt;
         }
-        for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 37; ++i)
         {
             cout << arrS[i];
         }
         break;
     case 2:
-    desi:
-        cout << "\t\t\tEnter the Disease(small_letters_without_gap) :";
-        cin>> str;
-        t=getdNo(str);
-        arrD[t]=1;
-        cout << "\n\t\t\t Add Another Disease (Y,N): ";
-        cin >> x;
-        if(x=='y' || x=='Y'){
-        goto desi;
-        }
-        for (int i = 0; i < 11; ++i)
-        {
-            cout << arrD[i];
-        }
-
-
+    // prescription
+    //find in tablets
         break;
     case 0:
     exit(0);
@@ -591,24 +389,16 @@ public:
     void person::RgenerateSD(){
     //symptoms or disease
     int x= rand()%2;
+    x=0;
     int t;
     //if x=0 symptoms
-    //if x=1 disease
     if(x==0){
-        ns=2+rand()%5;
+        ns=5+rand()%5;
         for (int i = 0; i < ns; ++i)
         {
-            t=1+rand()%10;
+            t=1+rand()%35;
             arrS[t]=1;
         }
-    }
-    if(x==1){
-             nd=1+rand()%2;
-        for (int i = 0; i < nd; ++i)
-        {
-            t=1+rand()%2;
-            arrD[t]=1;
-        }  
     }
 
 }
@@ -619,22 +409,16 @@ void person::printdata(){
     cout << "\t\t\tContact no. :" <<contactNo<<endl;
     cout << "\t\t\tDate of order :" <<date<<endl;
     //print symptoms
-    for (int i = 0; i < 11; ++i)
+    for (int i = 0; i < 37; ++i)
     {
     if (arrS[i]==1){
         finds(i);
     }
     }
 
-    //print disease
-    for (int i = 0; i < 3; ++i)
-    {
-        if (arrD[i]==1){
-        findd(i);
-    }
-    }
+
+    
 }
-/*----------------------------------------------------------------------------------------------- */ 
 
 /*----------------------------------------------------------------------------------------------- */ 
 class admin
@@ -643,7 +427,8 @@ public:
 //    admin();
     void menu(){
     int option;
-        person pa;
+    symptom SYMP;
+    person pa;
     Start:
     cout << "\n================================================================================================" << endl;
     cout << "\t\t\t-----------------------------" << endl;
@@ -652,14 +437,15 @@ public:
     cout << "\t\t\t 1. Creating data of Customer" << endl;
     cout << "\t\t\t 2. Medicine data" << endl;
     cout << "\t\t\t 3. Symptoms data " << endl;
-    cout << "\t\t\t 4. Disease data" << endl;
     cout << "\t\t\t 9. Back" << endl;
     cout << "\t\t\t 0. Exit" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tChoose Option:[1/2/3/4/9/0]" << endl;
+    cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
+    cout << "\t\t\tEnter Your Choose: ";
     cin >> option ;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
     switch (option)
     {
     
@@ -679,12 +465,7 @@ public:
     SYMP.menus();
     goto Start;
     break;
-    
-    case 4:
-    // Diseases data
-    DIS.menud();
-    goto Start;
-    break;        
+          
 
     case 9:
     break;
@@ -718,8 +499,10 @@ public:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
+    cout << "\t\t\tEnter Your Choose: ";
     cin >> option ;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
     switch (option)
     {
     
@@ -768,8 +551,10 @@ public:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
+    cout << "\t\t\tEnter Your Choose: ";
     cin >> option ;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
     switch (option)
     {
     
@@ -823,8 +608,10 @@ login:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tChoose Option:[1/2/3/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
+    cout << "\t\t\tEnter Your Choose: ";
     cin >> option ;
+    cout << endl;
+    cout << "\t\t\t---------------------------" << endl;
     switch (option)
     {
     case 1:
