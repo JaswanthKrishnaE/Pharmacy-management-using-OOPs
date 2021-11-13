@@ -207,28 +207,18 @@ void symptom::searchs() // search data of symptom
             return t;
     }
 
-/*----------------------------------------------------------------------------------------------- */ 
-
-class draft
-{
-public:
-//    draft();
-    
-};
-
 /*----------------------------------------------------------------------------------------------- */
 class person:public symptom
 {
-private:
+    private:
     string firstName;
     string lastName;
     string fullName;
     long long int contactNo;
     int date,d,m,y;
     int ns=0;
-    int arrS[37]={0};
-
-public:
+    int arrS[38]={0};
+    public:
     void menu();
     void Manual();
     void random();
@@ -263,7 +253,7 @@ public:
     {
     case 1:
         Manual();
-        for (int i = 0; i < 37; ++i)
+        for (int i = 0; i < 38; ++i)
         {
             arrS[i]=0;
         }        
@@ -272,7 +262,7 @@ public:
         break;
     case 2:
         random();
-        for (int i = 0; i < 37; ++i)
+        for (int i = 0; i < 38; ++i)
         {
             arrS[i]=0;
         }        
@@ -347,7 +337,7 @@ public:
         if(x=='y' || x=='Y'){
         goto synt;
         }
-        for (int i = 0; i < 37; ++i)
+        for (int i = 0; i < 38; ++i)
         {
             cout << arrS[i];
         }
@@ -366,50 +356,60 @@ public:
 
 
     void person::random(){
-    fstream file;
-    firstName=arrfn[rand()%26];
-    lastName=arrln[rand()%26];
-    fullName = firstName+lastName;
-    contactNo=((6+rand()%4)*100000);
-    y = 2019+rand()%2;
-    m =1+rand()%12;
-    if(m==1||m==3||m==5||m==7||m==8||m==10||m==12){
+        fstream file;
+        firstName=arrfn[rand()%26];
+        lastName=arrln[rand()%26];
+        fullName = firstName+lastName;
+        contactNo=((6+rand()%4)*100000);
+        y = 2019+rand()%2;
+        m =1+rand()%12;
+        if(m==1||m==3||m==5||m==7||m==8||m==10||m==12)
+        {
         d=1+rand()%31;
-    }
-    else if(m==2){
+        }
+        else if(m==2){
         d=1+rand()%27;
-    }
-    else{
+        }
+        else{
         d=1+rand()%30;
-    }
-    date = d*1000000+m*10000+y;
+        }
+        date = d*1000000+m*10000+y;
 
     }
 
     void person::RgenerateSD(){
-    //symptoms or disease
-    int x= rand()%2;
-    x=0;
-    int t;
-    //if x=0 symptoms
-    if(x==0){
+        //symptoms or disease
+        int x= rand()%2;
+        x=0;
+        int t;
+        //if x=0 symptoms
+        if(x==0){
         ns=5+rand()%5;
         for (int i = 0; i < ns; ++i)
         {
-            t=1+rand()%35;
+            t=1+rand()%36;
             arrS[t]=1;
         }
+        }
     }
-
-}
+    
 void person::printdata(){
     cout << "\t\t\tFirst name :" <<firstName<<endl;
     cout << "\t\t\tLast name :" <<lastName<<endl;
     cout << "\t\t\tFull name :" <<fullName<<endl;
     cout << "\t\t\tContact no. :" <<contactNo<<endl;
     cout << "\t\t\tDate of order :" <<date<<endl;
+    //no. of sumptons
+    ns=0;
+    for (int i = 0; i < 38; ++i)
+    {
+        if(arrS[i]==1){
+            ns++;
+        }
+    }
+    cout << "\t\t\tNo. of symptoms :" <<ns<<endl;
     //print symptoms
-    for (int i = 0; i < 37; ++i)
+    for (int i = 0; i < 38; ++i)
     {
     if (arrS[i]==1){
         finds(i);
