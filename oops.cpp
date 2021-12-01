@@ -99,8 +99,8 @@ void symptom::inserts() // add symptom details
     file.close();
 }
 
-void symptom::displays() // display symptoms details
-{
+    void symptom::displays() // display symptoms details
+    {
 
     fstream file;
     int total = 1;
@@ -130,8 +130,8 @@ void symptom::displays() // display symptoms details
     file.close();
 }
 
-void symptom::searchs() // search data of symptom
-{
+    void symptom::searchs() // search data of symptom
+    {
     fstream file;
     int found = 0;
     file.open("symptoms.txt", ios::in);
@@ -168,6 +168,7 @@ void symptom::searchs() // search data of symptom
         file.close();
     }
     }
+
     void symptom::finds(int i){
     fstream file1;
     int no;
@@ -187,9 +188,10 @@ void symptom::searchs() // search data of symptom
         file1.close();
 
     }
+
     int symptom::getsNo(string sy){
         fstream file1;
-    int t;
+        int t;
         file1.open("symptoms.txt", ios::in);
         file1 >> sNo >> symp;
 
@@ -219,7 +221,7 @@ class person:public symptom
     int ns=0;
     int arrS[38]={0};
     public:
-    void menu();
+    void Create();
     void Manual();
     void random();
     void MgenerateSD();
@@ -228,39 +230,7 @@ class person:public symptom
 
     
 };
-    void person::menu(){
-    int choice;
-    char x;
-    data:
-    cout << "\n================================================================================================" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t|         CREATE DATA        |" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t 1. Enter manually" << endl;
-    cout << "\t\t\t 2. Random generation" << endl;
-    cout << "\t\t\t 9. Back" << endl;
-    cout << "\t\t\t 0. Exit" << endl;
-
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tEnter Your Choose: ";
-    cin >> choice;
-    cout << endl;
-    cout << "\t\t\t---------------------------" << endl;
-
-    switch (choice)
-    {
-    case 1:
-        Manual();
-        for (int i = 0; i < 38; ++i)
-        {
-            arrS[i]=0;
-        }        
-        MgenerateSD();
-        printdata();
-        break;
-    case 2:
+    void person::Create(){
         random();
         for (int i = 0; i < 38; ++i)
         {
@@ -268,93 +238,9 @@ class person:public symptom
         }        
         RgenerateSD();
         printdata();
-        break;
-    case 9:
-       // back
-        break;
-    case 0:
-    exit(0);
-        break;
-    default:
-        cout << "\n\t\t\t Invalid choice... Please Try Again..";
-    }
+    
     }
     
-    void person::Manual(){
-    fstream file;
-    cout << "\n------------------------------------------------------------------------------------------------";
-    cout << "\n--------------------------------- Add Customer Details -----------------------------------------" << endl;
-
-    cout << "\t\tEnter the First name :" << endl;
-    cin>>firstName;
-    cout << "\t\tEnter the Last name :"<< endl;
-    cin >> lastName;
-    cout << "\t\tEnter the Contact Number :"<< endl;
-    cin >> contactNo;
-    cout << "\t\tEnter the date of approach[dd] :"<< endl;
-    cin >> d;
-    cout << "\t\tEnter the date of approach[mm] :"<< endl;
-    cin >> m;
-    cout << "\t\tEnter the date of approach[yyyy] :"<< endl;
-    cin >> y;
-
-    fullName = firstName+lastName;
-    date = d*1000000+m*10000+y;
-    }
-    void person::MgenerateSD(){
-     data:
-    string str;
-    int choice=0;
-    char x;
-    int t=0;
-
-    cout << "\n================================================================================================" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t|ADD SYMPTOMS OR PRESCRIPTION|" << endl;
-    cout << "\t\t\t-----------------------------" << endl;
-    cout << "\t\t\t 1. Symptom" << endl;
-    cout << "\t\t\t 2. Prescription" << endl;
-    cout << "\t\t\t 0. Exit" << endl;
-
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tChoose Option:[1/2/0]" << endl;
-    cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tEnter Your Choose: ";
-    cin >> choice;
-    cout << endl;
-    cout << "\t\t\t---------------------------" << endl;
-
-    switch (choice)
-    {
-    case 1:
-    synt:
-        cout << "\t\t\tEnter the symptom(small_letters_without_gap) :";
-        cin>> str;
-        t=getsNo(str);
-        arrS[t]=1;
-        cout << "\n\t\t\t Add Another Symptom (Y,N): ";
-        cin >> x;
-        if(x=='y' || x=='Y'){
-        goto synt;
-        }
-        for (int i = 0; i < 38; ++i)
-        {
-            cout << arrS[i];
-        }
-        break;
-    case 2:
-    // prescription
-    //find in tablets
-        break;
-    case 0:
-    exit(0);
-        break;
-    default:
-        cout << "\n\t\t\t Invalid choice... Please Try Again..";
-    }
-    }
-
-
     void person::random(){
         fstream file;
         firstName=arrfn[rand()%26];
@@ -451,7 +337,7 @@ public:
     
     case 1:
     // creating data
-    pa.menu();
+    pa.Create();
     goto Start;
     break;
 
@@ -508,12 +394,12 @@ public:
     
     case 1:
     // creating data
-    pr.menu();
+    pr.Create();
     goto Start;
     break;
 
     case 2:
-    //tablet data
+    //medicine data
     goto Start;
     break;    
        
@@ -545,7 +431,6 @@ public:
     cout << "\t\t\t-----------------------------" << endl;
     cout << "\t\t\t 1. Total Transactions Made" << endl;
     cout << "\t\t\t 2. Latest Transaction" << endl;
-    cout << "\t\t\t 3. All Transaction" << endl;
     cout << "\t\t\t 9. Back" << endl;
     cout << "\t\t\t 0. Exit" << endl;
     cout << "\t\t\t---------------------------" << endl;
@@ -567,12 +452,7 @@ public:
 //Latest Transaction
     goto Start;
     break;
-
-    case 3:
-//All Transaction
-    goto Start;
-    break;    
-       
+    
     case 9:
     //back
     break;
