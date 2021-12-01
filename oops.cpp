@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-// Jaswanth is a mental boy
+// kavya is a mental gender thelidu 
 using namespace std;
 // Global declaration of first name and last name
 string arrfn[25] = {"Amelia", "Beatta", "Camille", "Dalialah"
