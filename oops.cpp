@@ -7,16 +7,13 @@
 using namespace std;
 // Global declaration of first name and last name
 string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
-                    "Fatyma", "Garnett",
-                    "Harmoni", "Ileana", "Jainel", "Kalidas", "Luna", "Mahavira", "Nartana",
-                    "Oliver", "Patrick", "Quiterie", "Raimundo", "Scarlett", "Teresa",
-                    "Ulbrich", "Valencia", "Wachowicz", "Xiang", "Yacovone", "Zadra"};
-string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah"
-                                                     "Edith",
-                    "Franciska", "Gorge",
-                    "Hermoine", "Isebella", "Jane", "Katrina", "Lisbon", "Martha", "Nick",
-                    "O'conner", "Priya", "Quin", "Rregina", "Samnatha", "Tejaswini",
-                    "Urvasi", "Varsha", "Whitney", "Xiang", "Yolanda", "Zahra"};
+                    "Fatyma", "Garnett","Harmoni", "Ileana", "Jainel", "Kalidas", "Luna",
+                     "Mahavira", "Nartana","Oliver", "Patrick", "Quiterie", "Raimundo",
+                      "Scarlett", "Teresa","Ulnrich", "Valencia", "Wachowicz", "Xiang", "Yacovone", "Zadra"};
+string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah", "Edith",
+                    "Franciska", "Gorge","Hermoine", "Isebella", "Jane",
+                     "Katrina", "Lisbon", "Martha", "Nick","O'conner", "Priya",
+                      "Quin", "Rregina", "Samnatha", "Tejaswini","Urvasi", "Varsha", "Whitney", "Xiang", "Yolanda", "Zahra"};
 
 /*----------------------------------------------------------------------------------------------- */
 
