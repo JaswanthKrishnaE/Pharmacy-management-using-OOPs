@@ -6,13 +6,12 @@
 
 using namespace std;
 // Global declaration of first name and last name
-string arrfn[25] = {"Amelia", "Beatta", "Camille", "Dalialah"
-                                                   "Evelyn",
+string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
                     "Fatyma", "Garnett",
                     "Harmoni", "Ileana", "Jainel", "Kalidas", "Luna", "Mahavira", "Nartana",
                     "Oliver", "Patrick", "Quiterie", "Raimundo", "Scarlett", "Teresa",
                     "Ulbrich", "Valencia", "Wachowicz", "Xiang", "Yacovone", "Zadra"};
-string arrln[25] = {"Abella", "Batista", "Cristina", "Devorah"
+string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah"
                                                      "Edith",
                     "Franciska", "Gorge",
                     "Hermoine", "Isebella", "Jane", "Katrina", "Lisbon", "Martha", "Nick",
@@ -229,9 +228,7 @@ private:
 
 public:
     void Create();
-    void Manual();
     void random();
-    void MgenerateSD();
     void RgenerateSD();
     void printdata();
 };
@@ -267,7 +264,7 @@ void person::random()
     {
         d = 1 + rand() % 30;
     }
-    date = d * 1000000 + m * 10000 + y;
+    date = y*10000+m*100+d;
 }
 
 void person::RgenerateSD()
@@ -294,7 +291,7 @@ void person::printdata()
     cout << "\t\t\tLast name :" << lastName << endl;
     cout << "\t\t\tFull name :" << fullName << endl;
     cout << "\t\t\tContact no. :" << contactNo << endl;
-    cout << "\t\t\tDate of order :" << date << endl;
+    cout << "\t\t\tDate of order :" << d << "-"<< m << "-"<< y << endl;
     // no. of sumptons
     ns = 0;
     for (int i = 0; i < 38; ++i)
