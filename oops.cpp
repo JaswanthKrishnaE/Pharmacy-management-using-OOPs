@@ -13,7 +13,8 @@ string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
 string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah", "Edith",
                     "Franciska", "Gorge","Hermoine", "Isebella", "Jane",
                      "Katrina", "Lisbon", "Martha", "Nick","O'conner", "Priya",
-                      "Quin", "Rregina", "Samnatha", "Tejaswini","Urvasi", "Varsha", "Whitney", "Xiang", "Yolanda", "Zahra"};
+                      "Quin", "Rregina", "Samnatha", "Tejaswini","Urvasi", "Varsha",
+                       "Whitney", "Xiang", "Yolanda", "Zahra"};
 
 /*----------------------------------------------------------------------------------------------- */
 
