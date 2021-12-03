@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
+#include"Medicine.cpp"
 using namespace std;
 // Global declaration of first name and last name
 string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
@@ -50,7 +50,7 @@ start:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "t\t\tEnter Your Choose: ";
+    cout << "\n\t\t\tEnter Your Choose: ";
     cin >> choice;
     cout << endl;
     cout << "\t\t\t---------------------------" << endl;
@@ -117,13 +117,25 @@ void symptom::displays() // display symptoms details
     else
     {
         file >> sNo >> symp;
+
+        cout << "\n\t\t\t--------------------------";
+        cout << "\n\t\t\t|" << "SNo" << "|"<<"       Symptom      "<< "|";
+        cout << "\n\t\t\t--------------------------";
+
         while (!file.eof())
-        {
+        {/*
             cout << "\n\n\t\t\t symptom No.: " << total++ << endl;
             cout << "\t\t\tEnter Serial no.: " << sNo << endl;
-            cout << "\t\t\t Symptom: " << symp << endl;
+            cout << "\t\t\t Symptom: " << symp << endl;*/
+                cout << "\n\t\t\t";
+                cout << "|" << setw(3) << sNo;
+                cout << "|" << setw(20) << symp;
+                cout << "|" ;
+
             file >> sNo >> symp;
         }
+        cout << "\n\t\t\t--------------------------\n";
+
         if (total == 0)
         {
             cout << "\n\t\t\tNo Data Is Present...";
@@ -153,16 +165,26 @@ void symptom::searchs() // search data of symptom
         cin >> no;
         file >> sNo >> symp;
 
+        cout << "\n\t\t\t--------------------------";
+        cout << "\n\t\t\t|" << "SNo" << "|"<<"       Symptom      "<< "|";
+        cout << "\n\t\t\t--------------------------";
+
         while (!file.eof())
         {
             if (sNo == no)
             {
-                cout << "\t\t\tEnter Serial no.: " << sNo << endl;
-                cout << "\t\t\tSymptom: " << symp << endl;
+                cout << "\n\t\t\t";
+                cout << "|" << setw(3) << sNo;
+                cout << "|" << setw(20) << symp;
+                cout << "|" ;
+
                 found++;
             }
+
             file >> sNo >> symp;
         }
+        cout << "\n\t\t\t--------------------------\n";
+
         if (found == 0)
         {
             cout << "\n\t\t\tsymptom Roll No. Not Found...";
@@ -348,6 +370,7 @@ public:
 
         case 2:
             // tablet data
+            Medicine ma;
             goto Start;
             break;
 
@@ -390,7 +413,7 @@ public:
         cout << "\t\t\t---------------------------" << endl;
         cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
         cout << "\t\t\t---------------------------" << endl;
-        cout << "\t\t\tEnter Your Choose: ";
+        cout << "\n\t\t\tEnter Your Choose: ";
         cin >> option;
         cout << endl;
         cout << "\t\t\t---------------------------" << endl;
@@ -405,6 +428,7 @@ public:
 
         case 2:
             // medicine data
+            Medicine mr;
             goto Start;
             break;
 
@@ -441,7 +465,7 @@ public:
         cout << "\t\t\t---------------------------" << endl;
         cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
         cout << "\t\t\t---------------------------" << endl;
-        cout << "\t\t\tEnter Your Choose: ";
+        cout << "\n\t\t\tEnter Your Choose: ";
         cin >> option;
         cout << endl;
         cout << "\t\t\t---------------------------" << endl;
@@ -493,7 +517,7 @@ login:
     cout << "\t\t\t---------------------------" << endl;
     cout << "\t\t\tChoose Option:[1/2/3/0]" << endl;
     cout << "\t\t\t---------------------------" << endl;
-    cout << "\t\t\tEnter Your Choose: ";
+    cout << "\n\t\t\tEnter Your Choose: ";
     cin >> option;
     cout << endl;
     cout << "\t\t\t---------------------------" << endl;
@@ -515,6 +539,7 @@ login:
         break;
 
     case 0:
+
         exit(0);
         break;
 
