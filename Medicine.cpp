@@ -4,7 +4,6 @@
 #include <time.h>
 #include <cstring>
 #include <iomanip>
-// #include "oops.cpp"
 using namespace std;
 static int id = 10000;
 class Date
@@ -28,10 +27,11 @@ int Date ::generateDate()
     int date = yy * 10000 + mm * 100 + dd;
     return date;
 }
+static int total=35;
 class Medicine
 {
 private:
-    long long int mid;
+     int mid;
     char name[20];
     int mfg;
     int exp;
@@ -40,13 +40,20 @@ private:
 
 public:
     float mrp;
-    void generateMedicineDetails();
-    void AddMedicineData();
+    void AddMedicineDetails();
     void showMedicinesData();
     void searchMedicine(char *s);
+    void genenatePresMedicine();
 };
 
-void Medicine ::generateMedicineDetails()
+void Medicine :: generatePresMedicine(){
+    int x=2+rand()%(5-2+1);
+    sring med[x];
+    for(int i=1;i<=total;i++){
+
+    }
+}
+void Medicine ::AddMedicineDetails()
 {
     fstream file;
     mid = id++;
@@ -70,31 +77,9 @@ void Medicine ::generateMedicineDetails()
     file.open("medicines.txt", ios::app | ios::out);
     file << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_sheets << "\n";
     file.close();
-}
-
-void Medicine::AddMedicineData()
-{
-    fstream file;
-    cout << "\n------------------------------------------------------------------------------------------------";
-    cout << "\n---------------------------------- Add Medicine Details -----------------------------------------" << endl;
-    mid = id++;
-    cout << "Enter name of medicine :" << endl;
-    cin >> name;
-    cout << "Enter mrp :" << endl;
-    cin >> mrp;
-    cout << "Enter maufaturing date :" << endl;
-    cin >> mfg;
-    cout << "Enter expiry date :" << endl;
-    cin >> exp;
-    cout << "What is it used for :" << endl;
-    cin >> symptom;
-    cout << "No of sheets :" << endl;
-    cin >> no_of_sheets;
-    file.open("medicines.txt", ios::app | ios::out);
-    file << mid << "    " << name << "  " << mrp << "   " << mfg << "    " << exp << "   " << symptom << "   " << no_of_sheets << "\n";
-    file.close();
     cout << "Medicine successfully added !!!" << endl;
 }
+
 void Medicine::showMedicinesData()
 {
     fstream file;
@@ -146,15 +131,4 @@ void Medicine ::searchMedicine(char *s)
         }
     }
     file.close();
-}
-int main()
-{
-    srand(time(NULL));
-    Medicine m, m1;
-    // m.generateMedicineDetails();
-    m.showMedicinesData();
-    cout << "\n\t\t-------------------------------------------\n";
-    char s[] = "itching";
-    // m1.searchMedicine(s);
-    return 0;
 }

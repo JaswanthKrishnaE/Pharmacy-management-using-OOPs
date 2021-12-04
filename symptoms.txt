@@ -16,23 +16,21 @@
  16 rashes
  17 swelling
  18 jointpains
- 19 bloodvomit
- 20 anxiety
- 21 allergi
- 22 constipation
- 23 acne
- 24 dehydartion
- 25 snoring
- 26 foodpoison
- 27 hearingloss
- 28 tierdness
- 29 heartpalpitations
- 30 palecomplextion
- 31 yelloweyes
- 32 redeyes
- 33 hairloss
- 34 disfagia
- 35 itchy
- 36 bp
- 37 indigestion
+ 19 anxiety
+ 20 allergy
+ 21 constipation
+ 22 acne
+ 23 dehydration
+ 24 snoring
+ 25 foodpoison
+ 26 hearingloss
+ 27 tireddness
+ 28 heartpalpitations
+ 29 palecomplextion
+ 30 yelloweyes
+ 31 redeyes
+ 32 hairloss
+ 33 itching
+ 34 bp
+ 35 indigestion
  
