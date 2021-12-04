@@ -5,7 +5,11 @@
 #include <string.h>
 
 #include"Medicine.cpp"
+<<<<<<< Updated upstream
 static int n=4156;
+=======
+
+>>>>>>> Stashed changes
 
 using namespace std;
 // Global declaration of first name and last name
@@ -250,6 +254,7 @@ private:
 public:
     void gen_med(int l, string sy[], string med[], int i,int mrps[]);
     void generate_bill(string med[],int qty[],int x,int mrps[]);
+<<<<<<< Updated upstream
     void genMed(int l,string med[],int i,int mrps[]);
 };
 void Billing::genMed(int l,string med[],int i,int mrps[]){
@@ -327,6 +332,9 @@ void Billing :: generate_bill(string med[],int qty[],int x,int mrps[]){
     cout <<"  |"<<endl;
     cout<<"|__________________________________________________________________________________________________|\n";
 }    
+=======
+};
+>>>>>>> Stashed changes
 
 /*----------------------------------------------------------------------------------------------- */
 class person : public symptom
@@ -345,6 +353,10 @@ public:
     int prescriptiom; //0 or 1
     void Create();
     void random();
+<<<<<<< Updated upstream
+=======
+    void RgenerateS();
+>>>>>>> Stashed changes
     void printdata();
 };
 
@@ -355,6 +367,7 @@ void person::Create()
     {
         arrS[i] = 0;
     }
+<<<<<<< Updated upstream
 
     printdata();// remove
     prescriptiom =1;
@@ -388,14 +401,39 @@ void person::Create()
         Billing h;
             //random symptoms generation
 
+=======
+   // RgenerateS();
+    printdata();// remove
+    cout << "Do you have Prescription"<< ":";
+    prescriptiom =1;
+    //
+    if (prescriptiom ==1){
+    cout << "I have prescriptiom" << endl; 
+    int k=0;  //k=0 => no prescrption; k=1 => have prescription
+    int x=3+rand()%(5-2+1);
+    string med[x];
+    
+    
+    
+    
+    }
+    elseif(prescriptiom == 0){
+    cout << "I don't have prescriptiom" << endl; 
+            //random symptoms generation
+>>>>>>> Stashed changes
             cout<<"Pharmacy: Do you have a prescription??"<<endl;
             cout<<"Person: No sir! But I am suffering from ";
             for(int i=0;i<x;i++){
                 h.gen_med(1+rand()%(37-1+1),sy,med,i,mrps);
                 qty[i]=3+rand()%(10-3+1);
             }
+<<<<<<< Updated upstream
 
             //printing symptoms
+=======
+            //printing symptoms
+    
+>>>>>>> Stashed changes
             for(int i=0;i<x;i++){
                 cout<<sy[i];
                 if(i!= x-1)cout<<", ";
@@ -438,7 +476,27 @@ void person::random()
     date = y*10000+m*100+d;
 }
 
+<<<<<<< Updated upstream
 
+=======
+void person::RgenerateS()
+{
+    // symptoms or disease
+    int x = rand() % 2;
+    x = 0;
+    int t;
+    // if x=0 symptoms
+    if (x == 0)
+    {
+        ns = 5 + rand() % 5;
+        for (int i = 0; i < ns; ++i)
+        {
+            t = 1 + rand() % 36;
+            arrS[t] = 1;
+        }
+    }
+}
+>>>>>>> Stashed changes
 
 void person::printdata()
 {
