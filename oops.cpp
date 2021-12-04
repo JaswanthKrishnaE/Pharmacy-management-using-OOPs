@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include"Medicine.cpp"
-static int n=4156;
+static int n=4176;
 
 using namespace std;
 // Global declaration of first name and last name
