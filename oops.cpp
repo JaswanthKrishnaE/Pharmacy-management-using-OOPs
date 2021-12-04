@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
 #include"Medicine.cpp"
 static int n=4176;
 
@@ -476,6 +475,7 @@ public:
     void menu()
     {
         int option;
+        Medicine ma;
         symptom SYMP;
         person pa;
     Start:
@@ -566,7 +566,7 @@ public:
 
         case 2:
             // medicine data
-            mr.showMedicinesData();
+            Medicine mr;
             goto Start;
             break;
 

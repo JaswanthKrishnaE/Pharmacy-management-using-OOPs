@@ -4,7 +4,6 @@
 #include <time.h>
 #include <cstring>
 #include <iomanip>
-// #include "oops.cpp"
 using namespace std;
 static int id = 10000;
 class Date
@@ -28,10 +27,11 @@ int Date ::generateDate()
     int date = yy * 10000 + mm * 100 + dd;
     return date;
 }
+static int total = 35;
 class Medicine
 {
 private:
-    long long int mid;
+    int mid;
     char name[20];
     int mfg;
     int exp;
@@ -43,9 +43,9 @@ public:
     void AddMedicineDetails();
     void showMedicinesData();
     void searchMedicine(char *s);
+    void genenatePresMedicine();
 };
 
-    
 void Medicine ::AddMedicineDetails()
 {
     fstream file;
@@ -89,17 +89,16 @@ void Medicine::showMedicinesData()
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                << "\t\t\t|" << setw(3) << mid;
+                 << "\t\t\t|" << setw(3) << mid;
             cout << "|" << setw(25) << name;
             cout << "|" << setw(5) << mrp;
             cout << "|" << setw(10) << mfg;
-            cout << "|" << setw(10) << exp<<"|";
+            cout << "|" << setw(10) << exp << "|";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
         }
     }
     file.close();
-        cout << "\n\t\t\t-----------------------------------------------------------"<<endl;
-
+    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
 }
 
 void Medicine ::searchMedicine(char *s)
