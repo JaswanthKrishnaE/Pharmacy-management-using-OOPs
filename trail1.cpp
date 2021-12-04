@@ -21,7 +21,7 @@ public:
     int getsNo(string sy);
 };
 
-class Medicine:public symptom
+class Billing:public symptom
 {
 private:
     string medicine;
@@ -32,7 +32,7 @@ public:
     void generate_bill(string med[],int qty[],int x,int mrps[]);
 };
 
-void Medicine::gen_med(int l,string sy[],string med[],int i,int mrps[]){
+void Billing::gen_med(int l,string sy[],string med[],int i,int mrps[]){
     fstream file1;
     //int no;
         file1.open("symp_med_mrp.txt", ios::in);
@@ -54,7 +54,7 @@ void Medicine::gen_med(int l,string sy[],string med[],int i,int mrps[]){
 
     }
 
-void Medicine :: generate_bill(string med[],int qty[],int x,int mrps[]){
+void Billing :: generate_bill(string med[],int qty[],int x,int mrps[]){
     float tot[x],rate[x],total=0;
     //cout<<"__________________________________________________________________________________________________"<<endl;//98
     //cout<<"*************************************#Generating Bill#********************************************"<<endl;
@@ -92,7 +92,7 @@ int main()
     int x=3+rand()%(5-2+1);
     string sy[x],med[x];
     int mrps[x],qty[x];
-    Medicine h;
+    Billing h;
     switch(k){
         case 0:{
             //random symptoms generation
