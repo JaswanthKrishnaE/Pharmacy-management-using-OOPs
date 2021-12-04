@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+
 #include"Medicine.cpp"
+#include"trail1.cpp"
+
 using namespace std;
 // Global declaration of first name and last name
 string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
@@ -337,6 +340,8 @@ class admin
 {
 public:
     //    admin();
+        Medicine ma;
+
     void menu()
     {
         int option;
@@ -370,7 +375,6 @@ public:
 
         case 2:
             // tablet data
-            Medicine ma;
             goto Start;
             break;
 
@@ -397,6 +401,8 @@ class receptionist
 {
 public:
     //    receptionist();
+        Medicine mr;
+
     void menu()
     {
         int option;
@@ -428,7 +434,6 @@ public:
 
         case 2:
             // medicine data
-            Medicine mr;
             goto Start;
             break;
 
