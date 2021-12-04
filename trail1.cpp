@@ -84,7 +84,7 @@ void Billing :: generate_bill(string med[],int qty[],int x,int mrps[]){
     cout<<"|"<<setw(90)<<"Total amount: Rs."<<total<<"  |"<<endl;
     cout<<"|__________________________________________________________________________________________________|\n";
 }    
-/*
+    
 int main()
 {
     srand((unsigned int)getpid());
@@ -129,4 +129,3 @@ int main()
     }
     return 0;
 }
-*/

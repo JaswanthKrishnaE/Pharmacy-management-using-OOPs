@@ -88,7 +88,7 @@ void Medicine::showMedicinesData()
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                 << "\t\t\t|" << setw(5) << mid;
+                 << setw(25) << mid;
             cout << "|" << setw(25) << name;
             cout << "|" << setw(15) << mrp;
             cout << "|" << setw(15) << mfg;
