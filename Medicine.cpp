@@ -45,6 +45,7 @@ public:
     void searchMedicine(char *s);
 };
 
+    
 void Medicine ::AddMedicineDetails()
 {
     fstream file;
