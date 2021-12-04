@@ -357,7 +357,7 @@ void person::Create()
     }
 
     printdata();// remove
-    prescriptiom =1;
+    prescriptiom =rand()%2;
     //
     if (prescriptiom ==1){
                     cout<<"Pharmacy: Do you have a prescription??"<<endl;
