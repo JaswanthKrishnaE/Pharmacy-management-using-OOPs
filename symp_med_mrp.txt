@@ -1,8 +1,8 @@
  1 cold Tylenol 35 
  2 cough Benadryl 90
  3 fever Dolo-650 67
- 4 bodypains Dolo-650 85
- 5 headache ibuprofen 49
+ 4 bodypains Dolo-650 67
+ 5 headache ibuprofen 47
  6 stomachache acetaminophen 56    
  7 eyeburn diclofenac 48
  8 vomiting Dramamine 57
@@ -15,23 +15,21 @@
  15 suddenvisionproblem Zincovit 45
  16 rashes Vistaril 75
  17 swelling Naproxen 86
- 18 jointpains Ibuprofen 57
- 19 bloodvomit P.S.Phadke 76
- 20 anxiety Alprazolam 56
- 21 allergy Cetirizine 44 
- 22 constipation Bisacodyl 87
- 23 acne Isotretinoin 96
- 24 dehydartion Isolyte-S 58
- 25 snoring SnoreStop 98
- 26 foodpoison Imodium 67
- 27 hearingloss GinkgoBilobaExtract 90
- 28 tiredness Eszopiclone 89
- 29 heartpalpitations Metoprolol 59 
- 30 palecomplexion Methylcobalamin 57
- 31 yelloweyes Tetrahydrozoline 58
- 32 redeyes Lumify 45
- 33 hairloss Minoxidil 54
- 34 disphagia Diltiazem 85 
- 35 itching Levocet-M 50 
- 36 bp Metoprolol 65
- 37 indigestion Omeprazole 40
+ 18 jointpains Ibuprofen 47
+ 19 anxiety Alprazolam 56
+ 20 allergy Cetirizine 44 
+ 21 constipation Bisacodyl 87
+ 22 acne Isotretinoin 96
+ 23 dehydration Isolyte-S 58
+ 24 snoring SnoreStop 98
+ 25 foodpoison Imodium 67
+ 26 hearingloss GinkgoBilobaExtract 90
+ 27 tiredness Eszopiclone 89
+ 28 heartpalpitations Metoprolol 59 
+ 29 palecomplexion Methylcobalamin 57
+ 30 yelloweyes Tetrahydrozoline 58
+ 31 redeyes Lumify 45
+ 32 hairloss Minoxidil 54
+ 33 itching Levocet-M 50 
+ 34 bp Metoprolol 65
+ 35 indigestion Omeprazole 40
