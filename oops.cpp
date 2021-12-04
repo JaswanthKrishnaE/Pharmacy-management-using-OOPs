@@ -20,7 +20,7 @@ string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah", "Edith",
 
 class symptom
 {
-private:
+protected:
     int sNo;
     string symp;
 
@@ -32,6 +32,9 @@ public:
     void finds(int i);
     int getsNo(string sy);
 };
+
+
+
 void symptom::menus()
 {
 start:
@@ -233,6 +236,94 @@ int symptom::getsNo(string sy)
 
     return t;
 }
+/*----------------------------------------------------------------------------------------------- */
+
+class Billing:public symptom
+{
+private:
+    string medicine;
+    int mrp;
+
+public:
+    void gen_med(int l, string sy[], string med[], int i,int mrps[]);
+    void generate_bill(string med[],int qty[],int x,int mrps[]);
+    void genMed(int l,string med[],int i,int mrps[]);
+};
+void Billing::genMed(int l,string med[],int i,int mrps[]){
+    fstream file1;
+    //int no;
+        file1.open("symp_med_mrp.txt", ios::in);
+        //no=i;
+        file1 >> sNo >> symp >> medicine >> mrp;
+
+        while (!file1.eof())
+        {
+            if (sNo == l)
+            {
+                med[i]=medicine;
+                mrps[i]=mrp;
+            }
+            file1 >> sNo >> symp >> medicine >> mrp;
+        }
+        
+        file1.close();
+
+    }
+
+void Billing::gen_med(int l,string sy[],string med[],int i,int mrps[]){
+    fstream file1;
+    //int no;
+        file1.open("symp_med_mrp.txt", ios::in);
+        //no=i;
+        file1 >> sNo >> symp >> medicine >> mrp;
+
+        while (!file1.eof())
+        {
+            if (sNo == l)
+            {
+                sy[i]=symp;
+                med[i]=medicine;
+                mrps[i]=mrp;
+            }
+            file1 >> sNo >> symp >> medicine >> mrp;
+        }
+        
+        file1.close();
+
+}
+
+void Billing :: generate_bill(string med[],int qty[],int x,int mrps[]){
+    float tot[x],rate[x],total=0;
+    //cout<<"__________________________________________________________________________________________________"<<endl;//98
+    //cout<<"*************************************#Generating Bill#********************************************"<<endl;
+    //cout<<"__________________________________________________________________________________________________\n\n";
+    cout<<" __________________________________________________________________________________________________"<<endl;
+    cout<<"|"<<setw(99)<<"|"<<endl;
+    cout<<"|                                          IIITS PHARMACY                                          |"<<endl;//99
+    cout<<"|                             near XXX Bank,main road,Sricity,Chittoor                             |"<<endl;
+    cout<<"|                      Contact Info:9347246185,8436542840;state: Andhra Pradesh                    |"<<endl;
+    cout<<"|"<<setw(92)<<"BillNo:JH000/"<<n<<"/ |"<<endl;
+    //date
+    cout<<"|                                        GST INVOICE                                               |"<<endl;
+    cout<<"|__________________________________________________________________________________________________|\n";
+    cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
+    cout<<"|"<<setw(25)<<"Product Name |"<<setw(13)<<"Qty   |"<<setw(13)<<"MRP   |"<<setw(16)<<"Rate  |"<<setw(16)<<"GST  |"<<setw(16)<<"Total   |"<<endl;
+    cout<<"|________________________|____________|____________|_______________|_______________|_______________|\n";
+    for(int i=0;i<x;i++){
+        rate[i]=(mrps[i]/10)*qty[i];
+        tot[i]=rate[i]+(18*rate[i])/100; // 18 percent gst
+        total+=tot[i];
+        cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
+        cout<<"|"<<setw(23)<<med[i]<<" |"<<setw(11)<<qty[i]<<" |"<<setw(11)<<mrps[i]<<" |"<<setw(14)<<rate[i]<<" |"<<setw(14)<<(18*rate[i])/100<<" |"<<setw(14)<<tot[i]<<" |"<<endl;
+        //cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
+    }
+    cout<<"|________________________|____________|____________|_______________|_______________|_______________|\n";
+    cout<<"|"<<setw(99)<<"|"<<endl;
+    cout<<"|"<<setw(90)<<"Total amount: Rs.";//<<total 
+    printf("%.2f",total);
+    cout <<"  |"<<endl;
+    cout<<"|__________________________________________________________________________________________________|\n";
+}    
 
 /*----------------------------------------------------------------------------------------------- */
 class person : public symptom
@@ -241,17 +332,19 @@ private:
     string firstName;
     string lastName;
     string fullName;
-    long long int contactNo;
     int date, d, m, y;
+    
     int ns = 0;
-    int arrS[38] = {0};
+    int arrS[36] = {0};
+    
 
 public:
+    int prescriptiom; //0 or 1
     void Create();
     void random();
-    void RgenerateSD();
     void printdata();
 };
+
 void person::Create()
 {
     random();
@@ -259,8 +352,64 @@ void person::Create()
     {
         arrS[i] = 0;
     }
-    RgenerateSD();
-    printdata();
+
+    printdata();// remove
+    prescriptiom =rand()%2;
+    //
+    if (prescriptiom ==1){
+                    cout<<"Pharmacy: Do you have a prescription??"<<endl;
+            cout<<"Person: yes sir!  "<<endl;
+    int k=0;  //k=0 => no prescrption; k=1 => have prescription
+    int x=3+rand()%(5-2+1);
+    string med[x];
+    Billing b;
+    int mrps[x],qty[x];
+        for(int i=0;i<x;i++){
+                b.genMed(1+rand()%(37-1+1),med,i,mrps);
+                qty[i]=3+rand()%(10-3+1);
+            }
+            cout << "medicines in prescriptiom are :";
+            for(int i=0;i<x;i++){
+                cout<<med[i];
+                if(i!= x-1)cout<<", ";
+            }
+            cout << endl;
+         b.generate_bill(med,qty,x,mrps);
+        
+    }
+
+    if(prescriptiom == 0){
+        int x=3+rand()%(5-2+1);
+        string sy[x],med[x];
+        int mrps[x],qty[x];
+        Billing h;
+            //random symptoms generation
+
+            cout<<"Pharmacy: Do you have a prescription??"<<endl;
+            cout<<"Person: No sir! But I am suffering from ";
+            for(int i=0;i<x;i++){
+                h.gen_med(1+rand()%(37-1+1),sy,med,i,mrps);
+                qty[i]=3+rand()%(10-3+1);
+            }
+
+            //printing symptoms
+            for(int i=0;i<x;i++){
+                cout<<sy[i];
+                if(i!= x-1)cout<<", ";
+            }
+            cout<<". Please help me with some medicine!!"<<endl;
+
+            //medicines by pharmacy
+            cout<<"Pharmacy: ";
+            for(int i=0;i<x;i++){
+                cout<<med[i];
+                if(i!= x-1)cout<<", ";
+            }
+            cout<<" might work for you."<<endl;
+
+            //generating bill
+            h.generate_bill(med,qty,x,mrps);
+    }
 }
 
 void person::random()
@@ -269,7 +418,6 @@ void person::random()
     firstName = arrfn[rand() % 26];
     lastName = arrln[rand() % 26];
     fullName = firstName + lastName;
-    contactNo = ((6 + rand() % 4) * 100000);
     y = 2019 + rand() % 2;
     m = 1 + rand() % 12;
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
@@ -287,30 +435,13 @@ void person::random()
     date = y*10000+m*100+d;
 }
 
-void person::RgenerateSD()
-{
-    // symptoms or disease
-    int x = rand() % 2;
-    x = 0;
-    int t;
-    // if x=0 symptoms
-    if (x == 0)
-    {
-        ns = 5 + rand() % 5;
-        for (int i = 0; i < ns; ++i)
-        {
-            t = 1 + rand() % 36;
-            arrS[t] = 1;
-        }
-    }
-}
+
 
 void person::printdata()
 {
     cout << "\t\t\tFirst name :" << firstName << endl;
     cout << "\t\t\tLast name :" << lastName << endl;
     cout << "\t\t\tFull name :" << fullName << endl;
-    cout << "\t\t\tContact no. :" << contactNo << endl;
     cout << "\t\t\tDate of order :" << d << "-"<< m << "-"<< y << endl;
     // no. of sumptons
     ns = 0;
@@ -323,7 +454,7 @@ void person::printdata()
     }
     cout << "\t\t\tNo. of symptoms :" << ns << endl;
     // print symptoms
-    for (int i = 0; i < 38; ++i)
+    for (int i = 0; i < 36; ++i)
     {
         if (arrS[i] == 1)
         {
@@ -337,6 +468,8 @@ class admin
 {
 public:
     //    admin();
+        Medicine ma;
+
     void menu()
     {
         int option;
@@ -356,7 +489,7 @@ public:
         cout << "\t\t\t---------------------------" << endl;
         cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
         cout << "\t\t\t---------------------------" << endl;
-        cout << "\t\t\tEnter Your Choose: ";
+        cout << "\n\t\t\tEnter Your Choose: ";
         cin >> option;
         cout << endl;
         cout << "\t\t\t---------------------------" << endl;
@@ -398,6 +531,8 @@ class receptionist
 {
 public:
     //    receptionist();
+        Medicine mr;
+
     void menu()
     {
         int option;

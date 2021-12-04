@@ -27,11 +27,11 @@ int Date ::generateDate()
     int date = yy * 10000 + mm * 100 + dd;
     return date;
 }
-static int total=35;
+static int total = 35;
 class Medicine
 {
 private:
-     int mid;
+    int mid;
     char name[20];
     int mfg;
     int exp;
@@ -46,13 +46,6 @@ public:
     void genenatePresMedicine();
 };
 
-void Medicine :: generatePresMedicine(){
-    int x=2+rand()%(5-2+1);
-    sring med[x];
-    for(int i=1;i<=total;i++){
-
-    }
-}
 void Medicine ::AddMedicineDetails()
 {
     fstream file;
@@ -91,19 +84,21 @@ void Medicine::showMedicinesData()
     else
     {
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+        cout << "\t\t\t-----------------------------------------------------------";
         while (!file.eof())
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                 << setw(25) << mid;
+                 << "\t\t\t|" << setw(3) << mid;
             cout << "|" << setw(25) << name;
-            cout << "|" << setw(15) << mrp;
-            cout << "|" << setw(15) << mfg;
-            cout << "|" << setw(15) << exp;
+            cout << "|" << setw(5) << mrp;
+            cout << "|" << setw(10) << mfg;
+            cout << "|" << setw(10) << exp << "|";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
         }
     }
     file.close();
+    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
 }
 
 void Medicine ::searchMedicine(char *s)
