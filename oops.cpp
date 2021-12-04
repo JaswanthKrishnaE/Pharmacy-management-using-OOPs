@@ -491,7 +491,7 @@ public:
         cout << "\t\t\t---------------------------" << endl;
         cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
         cout << "\t\t\t---------------------------" << endl;
-        cout << "\t\t\tEnter Your Choose: ";
+        cout << "\n\t\t\tEnter Your Choose: ";
         cin >> option;
         cout << endl;
         cout << "\t\t\t---------------------------" << endl;
