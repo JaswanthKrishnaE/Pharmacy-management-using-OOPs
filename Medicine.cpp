@@ -5,7 +5,7 @@
 #include <cstring>
 #include <iomanip>
 using namespace std;
-static int id = 10000;
+static int id = 35;
 class Date
 {
 public:
@@ -36,14 +36,13 @@ private:
     int mfg;
     int exp;
     char symptom[30];
-    int no_of_sheets;
+    int no_of_tablets;
 
 public:
     float mrp;
     void AddMedicineDetails();
     void showMedicinesData();
-    void searchMedicine(char *s);
-    void genenatePresMedicine();
+    void searchMedicine(string s);
     void updateStock(string t, int qt);
 };
 
@@ -67,9 +66,9 @@ void Medicine ::AddMedicineDetails()
     }
     cout << "What is it used for :" << endl;
     cin >> symptom;
-    no_of_sheets = 1000 + rand() % (2000 - 1000 + 1);
+    no_of_tablets = 1000 + rand() % (2000 - 1000 + 1);
     file.open("medicines.txt", ios::app | ios::out);
-    file << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_sheets << "\n";
+    file << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_tablets << "\n";
     file.close();
     cout << "Medicine successfully added !!!" << endl;
 }
@@ -84,9 +83,14 @@ void Medicine::showMedicinesData()
     }
     else
     {
-        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
         cout << "\t-----------------------------------------------------------------";
-        cout << "\n\t|sNO" <<"|      Medicine name      " << "| MRP "<< "|    MFG   "<< "|    EXP   "<<"|Stock|";
+        cout << "\n\t|sNO"
+             << "|      Medicine name      "
+             << "| MRP "
+             << "|    MFG   "
+             << "|    EXP   "
+             << "|Stock|";
         cout << "\n\t-----------------------------------------------------------------";
 
         while (!file.eof())
@@ -98,15 +102,15 @@ void Medicine::showMedicinesData()
             cout << "|" << setw(5) << mrp;
             cout << "|" << setw(10) << mfg;
             cout << "|" << setw(10) << exp;
-            cout << "|" << setw(5) << no_of_sheets << "|";
-            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+            cout << "|" << setw(5) << no_of_tablets << "|";
+            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
         }
     }
     file.close();
     cout << "\n\t-----------------------------------------------------------------" << endl;
 }
 
-void Medicine ::searchMedicine(char *s)
+void Medicine ::searchMedicine(string s)
 {
     ifstream file;
     file.open("medicines.txt", ios::in | ios ::binary);
@@ -118,8 +122,8 @@ void Medicine ::searchMedicine(char *s)
     else
     {
         // file.read();
-        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
-        if (strcmp(s, symptom))
+        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
+        if (s == symptom)
         {
             cout.setf(ios::right);
             cout << "\n"
@@ -128,7 +132,7 @@ void Medicine ::searchMedicine(char *s)
             cout << "|" << setw(25) << mrp;
             cout << "|" << setw(25) << mfg;
             cout << "|" << setw(25) << exp;
-            cout << "|" << setw(25) << no_of_sheets;
+            cout << "|" << setw(25) << no_of_tablets;
         }
     }
     file.close();
@@ -147,17 +151,17 @@ void Medicine ::updateStock(string t, int qt)
 
     {
         file.seekg(0);
-        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
-        
+        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
+
         while (!file.eof())
         {
             if (t == name)
             {
-                no_of_sheets = no_of_sheets - qt;
+                no_of_tablets = no_of_tablets - qt;
             }
 
-            file1 << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_sheets << "\n";
-            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+            file1 << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_tablets << "\n";
+            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
         }
     }
     file1.close();
