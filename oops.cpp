@@ -254,7 +254,7 @@ private:
 
 public:
     void gen_med(int l, string sy[], string med[], int i, int mrps[]);
-    void generate_bill(string med[], int qty[], int x, int mrps[]);
+    int generate_bill(string med[], int qty[], int x, int mrps[]);
     void genMed(int l, string med[], int i, int mrps[]);
 };
 void Billing::genMed(int l, string med[], int i, int mrps[])
@@ -300,7 +300,7 @@ void Billing::gen_med(int l, string sy[], string med[], int i, int mrps[])
     file1.close();
 }
 
-void Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
+int Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
 {
     float tot[x], rate[x], total = 0;
     // cout<<"__________________________________________________________________________________________________"<<endl;//98
@@ -320,7 +320,7 @@ void Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
     cout << "|________________________|____________|____________|_______________|_______________|_______________|\n";
     for (int i = 0; i < x; i++)
     {
-        rate[i] = (mrps[i] / 10) * qty[i];
+        rate[i] = (mrps[i] / 10.0) * qty[i];
         tot[i] = rate[i] + (18 * rate[i]) / 100; // 18 percent gst
         total += tot[i];
         cout << "|" << setw(25) << " |" << setw(13) << " |" << setw(13) << " |" << setw(16) << " |" << setw(16) << " |" << setw(16) << " |" << endl;
@@ -333,6 +333,7 @@ void Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
     printf("%.2f", total);
     cout << "  |" << endl;
     cout << "|__________________________________________________________________________________________________|\n";
+    return total;
 }
 
 /*----------------------------------------------------------------------------------------------- */
@@ -344,17 +345,16 @@ private:
     string fullName;
     int date, d, m, y;
 
-
-
 public:
     int prescriptiom; // 0 or 1
     void Create();
     void random();
     void printdata();
 };
-
+static int cNo = 1;
 void person::Create()
 {
+    int amt = 0;
     random();
 
     printdata(); // remove
@@ -362,8 +362,8 @@ void person::Create()
     //
     if (prescriptiom == 1)
     {
-        cout << "|Pharmacy: Do you have a prescription??" << endl;
-        cout << "|Person: yes sir!  " << endl;
+        cout << "Pharmacy: Do you have a prescription??" << endl;
+        cout << "Person: yes sir!  " << endl;
         int k = 0; // k=0 => no prescrption; k=1 => have prescription
         int x = 3 + rand() % (5 - 2 + 1);
         string med[x];
@@ -371,10 +371,10 @@ void person::Create()
         int mrps[x], qty[x];
         for (int i = 0; i < x; i++)
         {
-            b.genMed(1 + rand() % (37 - 1 + 1), med, i, mrps);
+            b.genMed(1 + rand() % (total - 1 + 1), med, i, mrps);
             qty[i] = 3 + rand() % (10 - 3 + 1);
         }
-        cout << "|medicines in prescriptiom are :";
+        cout << "medicines in prescriptiom are :";
         for (int i = 0; i < x; i++)
         {
             cout << med[i];
@@ -384,7 +384,7 @@ void person::Create()
                 cout << ", ";
         }
         cout << endl;
-        b.generate_bill(med, qty, x, mrps);
+        amt = b.generate_bill(med, qty, x, mrps);
     }
 
     if (prescriptiom == 0)
@@ -395,11 +395,11 @@ void person::Create()
         Billing h;
         // random symptoms generation
 
-        cout << "|Pharmacy: Do you have a prescription??" << endl;
-        cout << "|Person: No sir! But I am suffering from ";
+        cout << "Pharmacy: Do you have a prescription??" << endl;
+        cout << "Person: No sir! But I am suffering from ";
         for (int i = 0; i < x; i++)
         {
-            h.gen_med(1 + rand() % (37 - 1 + 1), sy, med, i, mrps);
+            h.gen_med(1 + rand() % (total - 1 + 1), sy, med, i, mrps);
             qty[i] = 3 + rand() % (10 - 3 + 1);
         }
 
@@ -410,10 +410,10 @@ void person::Create()
             if (i != x - 1)
                 cout << ", ";
         }
-        cout << ". Please help me with some medicine!!" ;
+        cout << ". Please help me with some medicine!!" << endl;
 
         // medicines by pharmacy
-        cout << "|Pharmacy: ";
+        cout << "Pharmacy: ";
         for (int i = 0; i < x; i++)
         {
             cout << med[i];
@@ -425,15 +425,13 @@ void person::Create()
         cout << " might work for you." << endl;
 
         // generating bill
-        h.generate_bill(med, qty, x, mrps);
+        amt = h.generate_bill(med, qty, x, mrps);
     }
     // save
     fstream save;
     save.open("saving.txt", ios::app | ios::out);
-    save << " " << firstName << " " <<lastName <<" " << fullName << " " << d << " " << m <<" " << y  <<" " <<date << " " ;
+    save << cNo++ << " " << fullName << " " << d << " " << m << " " << y << " " << date << " " << amt << "\n";
     save.close();
-
-
 }
 
 void person::random()
@@ -461,15 +459,14 @@ void person::random()
 
 void person::printdata()
 {
-    cout << "|--------------------------------------------------------------------------------------------------|\n";
+    cout << " -------------------------------------------------------------------------------------------------- \n";
+    cout << "|                                                                                                  |\n";
 
-    //cout << "\t\t\tFirst name :" << firstName;
-    //cout << "\t\t\tLast name :" << lastName << endl;
-    cout << "|\t\t\tFull name :" << fullName << "\t\t\t\t\t\t   |" << endl;
-    cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t   |" << endl;
+    // cout << "\t\t\tFirst name :" << firstName;
+    // cout << "\t\t\tLast name :" << lastName << endl;
+    cout << "|\t\t\tFull name :" << fullName << "\t\t\t\t\t\t|" << endl;
+    cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t|" << endl;
     cout << "|__________________________________________________________________________________________________|\n";
-
-
 }
 
 /*----------------------------------------------------------------------------------------------- */
