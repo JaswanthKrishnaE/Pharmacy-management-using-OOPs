@@ -353,6 +353,11 @@ public:
     void random();
     void printdata();
     void transcount();
+    void last5();
+    void lasttrans();
+    void showTransactionData();
+    void showTransactionBydate();
+
 };
 static int cNo = 1;
 void person::Create()
@@ -496,8 +501,129 @@ void person::printdata()
         }
         file.close();
     }
+    }
+
+    void person :: lasttrans(){
+    string name = arrfn[rand()%26]+arrln[rand()%26];
+    int found=0;
+    cout << "\t\t\tName : " << name << endl;
+    fstream file;
+            file.open("saving.txt", ios::in);
+    if (!file)
+    {
+        cout << "\n\t\t\t No Data Is Present...";
+    }
+    else{
+        cout << "\t\t\tname: " << name;
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        while (!file.eof())
+        {
+        if ( name == fullName ){
+            found++;
+            cout << " "<< found << " " << fullName << " " << d << "-" << m <<"-" << y << " " << amt ;  
+        }
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        }
+        cout << "\n\t\t\tTotal no. of transactions : " << found << endl;
+
+        if(found==0){
+            cout << "\t\t\tno data of person "<< endl;
+        }
+        file.close();
+    }
+
+
 
     }
+    void person::last5(){
+     fstream file;
+     int count=0,h=0;
+    file.open("saving.txt",ios::in);
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+
+    while (!file.eof())
+        {
+            count++;
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        }
+        //cout<<count<<endl;
+        file.close();
+
+        file.open("saving.txt",ios::in);
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+
+        while (!file.eof())
+        {
+            h++;
+            if (h> count-5 && h <= count)
+            {
+            cout  << " " << fullName << " " << d << "-" << m <<"-" << y << " " << amt  << endl ;  
+            }
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        
+        }
+
+        
+        file.close();
+    }
+    void person::showTransactionData()
+{
+    fstream file;
+    file.open("saving.txt", ios::in);
+    if (!file)
+    {
+        cout << "\n\t\t\tNo Data Is Present...........";
+    }
+    else
+    {
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        cout << "+------------------------------------------------------+"<<endl;
+        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+        cout <<"|"<< setw(25) << "Name of the person"  <<"  |"<<setw(19)<<"Date   |" <<setw(8)<<"Amount|"<< "\n";
+        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+        cout << "+------------------------------------------------------+"<<endl;
+        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+        while (!file.eof())
+        {
+            cout <<"|"<< setw(25) << fullName <<"  |"<<setw(7)<< d << "-" <<setw(2)<< m << "-" << y << "   |" <<setw(5)<< amt <<"  |"<< "\n";
+            cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+            file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        }
+    }
+    file.close();
+    cout << "+------------------------------------------------------+"<<endl;
+}
+    void person::showTransactionBydate()
+{
+    fstream file;
+    file.open("saving.txt", ios::in);
+    if (!file)
+    {
+        cout << "\n\t\t\tNo Data Is Present...........";
+    }
+    else
+    {
+        int flag = 0;
+        int dat = 20190827;
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        cout << "\t\t\t-----------------------------------------------------------";
+        while (!file.eof())
+        {
+            if (date == dat)
+            {
+                flag = 1;
+                cout << fullName << setw(15) << "|" << d << "-" << m << "-" << y << " |" << amt << "\n";
+            }
+            file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        }
+        if (flag == 0)
+        {
+            cout << "\n\t\t\tNo tansactions on that day\n";
+        }
+    }
+    file.close();
+    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
+}
 /*----------------------------------------------------------------------------------------------- */
 class admin
 {
@@ -519,6 +645,8 @@ public:
         cout << "\t\t\t 1. Creating data of Customer" << endl;
         cout << "\t\t\t 2. Medicine data" << endl;
         cout << "\t\t\t 3. Symptoms data " << endl;
+        cout << "\t\t\t 4. Customer Transaction Details " << endl;
+        cout << "\t\t\t 5. Customer Transaction Details On a particular date " << endl;
         cout << "\t\t\t 9. Back" << endl;
         cout << "\t\t\t 0. Exit" << endl;
         cout << "\t\t\t---------------------------" << endl;
@@ -548,7 +676,16 @@ public:
             SYMP.menus();
             goto Start;
             break;
-
+        case 4:
+            // customer transactions
+            pa.showTransactionData();
+            goto Start;
+            break;
+        case 5:
+            // show customer transactions according to date
+            pa.showTransactionBydate();
+            goto Start ;
+            break;
         case 9:
             break;
 
@@ -579,10 +716,11 @@ public:
         cout << "\t\t\t-----------------------------" << endl;
         cout << "\t\t\t 1. Creating data of Customer" << endl;
         cout << "\t\t\t 2. Medicine data" << endl;
+        cout << "\t\t\t 3. Last trasactions" << endl;
         cout << "\t\t\t 9. Back" << endl;
         cout << "\t\t\t 0. Exit" << endl;
         cout << "\t\t\t---------------------------" << endl;
-        cout << "\t\t\tChoose Option:[1/2/9/0]" << endl;
+        cout << "\t\t\tChoose Option:[1/2/3/9/0]" << endl;
         cout << "\t\t\t---------------------------" << endl;
         cout << "\n\t\t\tEnter Your Choose: ";
         cin >> option;
@@ -598,11 +736,15 @@ public:
             break;
 
         case 2:
+            mr.showMedicinesData();
             // medicine data
-            Medicine mr;
             goto Start;
             break;
 
+        case 3:
+            pr.last5();
+            goto Start;
+            break;
         case 9:
             // back
             break;
@@ -652,6 +794,7 @@ public:
 
         case 2:
             // Latest Transaction
+            cp.lasttrans();
             goto Start;
             break;
 
