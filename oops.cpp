@@ -3,20 +3,20 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include"Medicine.cpp"
-static int n=4176;
+#include "Medicine.cpp"
+static int n = 4176;
 
 using namespace std;
 // Global declaration of first name and last name
-string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah","Evelyn",
-                    "Fatyma", "Garnett","Harmoni", "Ileana", "Jainel", "Kalidas", "Luna",
-                     "Mahavira", "Nartana","Oliver", "Patrick", "Quiterie", "Raimundo",
-                      "Scarlett", "Teresa","Ulnrich", "Valencia", "Wachowicz", "Xiang", "Yacovone", "Zadra"};
+string arrfn[26] = {"Amelia", "Beatta", "Camille", "Dalialah", "Evelyn",
+                    "Fatyma", "Garnett", "Harmoni", "Ileana", "Jainel", "Kalidas", "Luna",
+                    "Mahavira", "Nartana", "Oliver", "Patrick", "Quiterie", "Raimundo",
+                    "Scarlett", "Teresa", "Ulnrich", "Valencia", "Wachowicz", "Xiang", "Yacovone", "Zadra"};
 string arrln[26] = {"Abella", "Batista", "Cristina", "Devorah", "Edith",
-                    "Franciska", "Gorge","Hermoine", "Isebella", "Jane",
-                     "Katrina", "Lisbon", "Martha", "Nick","O'conner", "Priya",
-                      "Quin", "Rregina", "Samnatha", "Tejaswini","Urvasi", "Varsha",
-                       "Whitney", "Xiang", "Yolanda", "Zahra"};
+                    "Franciska", "Gorge", "Hermoine", "Isebella", "Jane",
+                    "Katrina", "Lisbon", "Martha", "Nick", "O'conner", "Priya",
+                    "Quin", "Rregina", "Samnatha", "Tejaswini", "Urvasi", "Varsha",
+                    "Whitney", "Xiang", "Yolanda", "Zahra"};
 
 /*----------------------------------------------------------------------------------------------- */
 
@@ -34,8 +34,6 @@ public:
     void finds(int i);
     int getsNo(string sy);
 };
-
-
 
 void symptom::menus()
 {
@@ -124,18 +122,22 @@ void symptom::displays() // display symptoms details
         file >> sNo >> symp;
 
         cout << "\n\t\t\t--------------------------";
-        cout << "\n\t\t\t|" << "SNo" << "|"<<"       Symptom      "<< "|";
+        cout << "\n\t\t\t|"
+             << "SNo"
+             << "|"
+             << "       Symptom      "
+             << "|";
         cout << "\n\t\t\t--------------------------";
 
         while (!file.eof())
-        {/*
-            cout << "\n\n\t\t\t symptom No.: " << total++ << endl;
-            cout << "\t\t\tEnter Serial no.: " << sNo << endl;
-            cout << "\t\t\t Symptom: " << symp << endl;*/
-                cout << "\n\t\t\t";
-                cout << "|" << setw(3) << sNo;
-                cout << "|" << setw(20) << symp;
-                cout << "|" ;
+        { /*
+             cout << "\n\n\t\t\t symptom No.: " << total++ << endl;
+             cout << "\t\t\tEnter Serial no.: " << sNo << endl;
+             cout << "\t\t\t Symptom: " << symp << endl;*/
+            cout << "\n\t\t\t";
+            cout << "|" << setw(3) << sNo;
+            cout << "|" << setw(20) << symp;
+            cout << "|";
 
             file >> sNo >> symp;
         }
@@ -171,7 +173,11 @@ void symptom::searchs() // search data of symptom
         file >> sNo >> symp;
 
         cout << "\n\t\t\t--------------------------";
-        cout << "\n\t\t\t|" << "SNo" << "|"<<"       Symptom      "<< "|";
+        cout << "\n\t\t\t|"
+             << "SNo"
+             << "|"
+             << "       Symptom      "
+             << "|";
         cout << "\n\t\t\t--------------------------";
 
         while (!file.eof())
@@ -181,7 +187,7 @@ void symptom::searchs() // search data of symptom
                 cout << "\n\t\t\t";
                 cout << "|" << setw(3) << sNo;
                 cout << "|" << setw(20) << symp;
-                cout << "|" ;
+                cout << "|";
 
                 found++;
             }
@@ -240,92 +246,94 @@ int symptom::getsNo(string sy)
 }
 /*----------------------------------------------------------------------------------------------- */
 
-class Billing:public symptom
+class Billing : public symptom
 {
 private:
     string medicine;
     int mrp;
 
 public:
-    void gen_med(int l, string sy[], string med[], int i,int mrps[]);
-    void generate_bill(string med[],int qty[],int x,int mrps[]);
-    void genMed(int l,string med[],int i,int mrps[]);
+    void gen_med(int l, string sy[], string med[], int i, int mrps[]);
+    void generate_bill(string med[], int qty[], int x, int mrps[]);
+    void genMed(int l, string med[], int i, int mrps[]);
 };
-void Billing::genMed(int l,string med[],int i,int mrps[]){
+void Billing::genMed(int l, string med[], int i, int mrps[])
+{
     fstream file1;
-    //int no;
-        file1.open("symp_med_mrp.txt", ios::in);
-        //no=i;
-        file1 >> sNo >> symp >> medicine >> mrp;
+    // int no;
+    file1.open("symp_med_mrp.txt", ios::in);
+    // no=i;
+    file1 >> sNo >> symp >> medicine >> mrp;
 
-        while (!file1.eof())
+    while (!file1.eof())
+    {
+        if (sNo == l)
         {
-            if (sNo == l)
-            {
-                med[i]=medicine;
-                mrps[i]=mrp;
-            }
-            file1 >> sNo >> symp >> medicine >> mrp;
+            med[i] = medicine;
+            mrps[i] = mrp;
         }
-        
-        file1.close();
-
+        file1 >> sNo >> symp >> medicine >> mrp;
     }
 
-void Billing::gen_med(int l,string sy[],string med[],int i,int mrps[]){
-    fstream file1;
-    //int no;
-        file1.open("symp_med_mrp.txt", ios::in);
-        //no=i;
-        file1 >> sNo >> symp >> medicine >> mrp;
-
-        while (!file1.eof())
-        {
-            if (sNo == l)
-            {
-                sy[i]=symp;
-                med[i]=medicine;
-                mrps[i]=mrp;
-            }
-            file1 >> sNo >> symp >> medicine >> mrp;
-        }
-        
-        file1.close();
-
+    file1.close();
 }
 
-void Billing :: generate_bill(string med[],int qty[],int x,int mrps[]){
-    float tot[x],rate[x],total=0;
-    //cout<<"__________________________________________________________________________________________________"<<endl;//98
-    //cout<<"*************************************#Generating Bill#********************************************"<<endl;
-    //cout<<"__________________________________________________________________________________________________\n\n";
-    cout<<" __________________________________________________________________________________________________"<<endl;
-    cout<<"|"<<setw(99)<<"|"<<endl;
-    cout<<"|                                          IIITS PHARMACY                                          |"<<endl;//99
-    cout<<"|                             near XXX Bank,main road,Sricity,Chittoor                             |"<<endl;
-    cout<<"|                      Contact Info:9347246185,8436542840;state: Andhra Pradesh                    |"<<endl;
-    cout<<"|"<<setw(92)<<"BillNo:JH000/"<<n<<"/ |"<<endl;
-    //date
-    cout<<"|                                        GST INVOICE                                               |"<<endl;
-    cout<<"|__________________________________________________________________________________________________|\n";
-    cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
-    cout<<"|"<<setw(25)<<"Product Name |"<<setw(13)<<"Qty   |"<<setw(13)<<"MRP   |"<<setw(16)<<"Rate  |"<<setw(16)<<"GST  |"<<setw(16)<<"Total   |"<<endl;
-    cout<<"|________________________|____________|____________|_______________|_______________|_______________|\n";
-    for(int i=0;i<x;i++){
-        rate[i]=(mrps[i]/10)*qty[i];
-        tot[i]=rate[i]+(18*rate[i])/100; // 18 percent gst
-        total+=tot[i];
-        cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
-        cout<<"|"<<setw(23)<<med[i]<<" |"<<setw(11)<<qty[i]<<" |"<<setw(11)<<mrps[i]<<" |"<<setw(14)<<rate[i]<<" |"<<setw(14)<<(18*rate[i])/100<<" |"<<setw(14)<<tot[i]<<" |"<<endl;
-        //cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
+void Billing::gen_med(int l, string sy[], string med[], int i, int mrps[])
+{
+    fstream file1;
+    // int no;
+    file1.open("symp_med_mrp.txt", ios::in);
+    // no=i;
+    file1 >> sNo >> symp >> medicine >> mrp;
+
+    while (!file1.eof())
+    {
+        if (sNo == l)
+        {
+            sy[i] = symp;
+            med[i] = medicine;
+            mrps[i] = mrp;
+        }
+        file1 >> sNo >> symp >> medicine >> mrp;
     }
-    cout<<"|________________________|____________|____________|_______________|_______________|_______________|\n";
-    cout<<"|"<<setw(99)<<"|"<<endl;
-    cout<<"|"<<setw(90)<<"Total amount: Rs.";//<<total 
-    printf("%.2f",total);
-    cout <<"  |"<<endl;
-    cout<<"|__________________________________________________________________________________________________|\n";
-}    
+
+    file1.close();
+}
+
+void Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
+{
+    float tot[x], rate[x], total = 0;
+    // cout<<"__________________________________________________________________________________________________"<<endl;//98
+    // cout<<"*************************************#Generating Bill#********************************************"<<endl;
+    // cout<<"__________________________________________________________________________________________________\n\n";
+    cout << " __________________________________________________________________________________________________" << endl;
+    cout << "|" << setw(99) << "|" << endl;
+    cout << "|                                          IIITS PHARMACY                                          |" << endl; // 99
+    cout << "|                             near XXX Bank,main road,Sricity,Chittoor                             |" << endl;
+    cout << "|                      Contact Info:9347246185,8436542840;state: Andhra Pradesh                    |" << endl;
+    cout << "|" << setw(92) << "BillNo:JH000/" << n++ << "/ |" << endl;
+    // date
+    cout << "|                                        GST INVOICE                                               |" << endl;
+    cout << "|__________________________________________________________________________________________________|\n";
+    cout << "|" << setw(25) << " |" << setw(13) << " |" << setw(13) << " |" << setw(16) << " |" << setw(16) << " |" << setw(16) << " |" << endl;
+    cout << "|" << setw(25) << "Product Name |" << setw(13) << "Qty   |" << setw(13) << "MRP   |" << setw(16) << "Rate  |" << setw(16) << "GST  |" << setw(16) << "Total   |" << endl;
+    cout << "|________________________|____________|____________|_______________|_______________|_______________|\n";
+    for (int i = 0; i < x; i++)
+    {
+        rate[i] = (mrps[i] / 10) * qty[i];
+        tot[i] = rate[i] + (18 * rate[i]) / 100; // 18 percent gst
+        total += tot[i];
+        cout << "|" << setw(25) << " |" << setw(13) << " |" << setw(13) << " |" << setw(16) << " |" << setw(16) << " |" << setw(16) << " |" << endl;
+        cout << "|" << setw(23) << med[i] << " |" << setw(11) << qty[i] << " |" << setw(11) << mrps[i] << " |" << setw(14) << rate[i] << " |" << setw(14) << (18 * rate[i]) / 100 << " |" << setw(14) << tot[i] << " |" << endl;
+        // cout<<"|"<<setw(25)<<" |"<<setw(13)<<" |"<<setw(13)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<setw(16)<<" |"<<endl;
+    }
+    cout << "|________________________|____________|____________|_______________|_______________|_______________|\n";
+    cout << "|" << setw(99) << "|" << endl;
+    cout << "|" << setw(90) << "Total amount: Rs."; //<<total
+    printf("%.2f", total);
+    cout << "  |" << endl;
+    cout << "|__________________________________________________________________________________________________|\n";
+}
 
 /*----------------------------------------------------------------------------------------------- */
 class person : public symptom
@@ -335,13 +343,12 @@ private:
     string lastName;
     string fullName;
     int date, d, m, y;
-    
+
     int ns = 0;
     int arrS[36] = {0};
-    
 
 public:
-    int prescriptiom; //0 or 1
+    int prescriptiom; // 0 or 1
     void Create();
     void random();
     void printdata();
@@ -355,62 +362,75 @@ void person::Create()
         arrS[i] = 0;
     }
 
-    printdata();// remove
-    prescriptiom =rand()%2;
+    printdata(); // remove
+    prescriptiom = rand() % 2;
     //
-    if (prescriptiom ==1){
-                    cout<<"Pharmacy: Do you have a prescription??"<<endl;
-            cout<<"Person: yes sir!  "<<endl;
-    int k=0;  //k=0 => no prescrption; k=1 => have prescription
-    int x=3+rand()%(5-2+1);
-    string med[x];
-    Billing b;
-    int mrps[x],qty[x];
-        for(int i=0;i<x;i++){
-                b.genMed(1+rand()%(37-1+1),med,i,mrps);
-                qty[i]=3+rand()%(10-3+1);
-            }
-            cout << "medicines in prescriptiom are :";
-            for(int i=0;i<x;i++){
-                cout<<med[i];
-                if(i!= x-1)cout<<", ";
-            }
-            cout << endl;
-         b.generate_bill(med,qty,x,mrps);
-        
+    if (prescriptiom == 1)
+    {
+        cout << "Pharmacy: Do you have a prescription??" << endl;
+        cout << "Person: yes sir!  " << endl;
+        int k = 0; // k=0 => no prescrption; k=1 => have prescription
+        int x = 3 + rand() % (5 - 2 + 1);
+        string med[x];
+        Billing b;
+        int mrps[x], qty[x];
+        for (int i = 0; i < x; i++)
+        {
+            b.genMed(1 + rand() % (37 - 1 + 1), med, i, mrps);
+            qty[i] = 3 + rand() % (10 - 3 + 1);
+        }
+        cout << "medicines in prescriptiom are :";
+        for (int i = 0; i < x; i++)
+        {
+            cout << med[i];
+            Medicine ut;
+            ut.updateStock(med[i], qty[i]);
+            if (i != x - 1)
+                cout << ", ";
+        }
+        cout << endl;
+        b.generate_bill(med, qty, x, mrps);
     }
 
-    if(prescriptiom == 0){
-        int x=3+rand()%(5-2+1);
-        string sy[x],med[x];
-        int mrps[x],qty[x];
+    if (prescriptiom == 0)
+    {
+        int x = 3 + rand() % (5 - 2 + 1);
+        string sy[x], med[x];
+        int mrps[x], qty[x];
         Billing h;
-            //random symptoms generation
+        // random symptoms generation
 
-            cout<<"Pharmacy: Do you have a prescription??"<<endl;
-            cout<<"Person: No sir! But I am suffering from ";
-            for(int i=0;i<x;i++){
-                h.gen_med(1+rand()%(37-1+1),sy,med,i,mrps);
-                qty[i]=3+rand()%(10-3+1);
-            }
+        cout << "Pharmacy: Do you have a prescription??" << endl;
+        cout << "Person: No sir! But I am suffering from ";
+        for (int i = 0; i < x; i++)
+        {
+            h.gen_med(1 + rand() % (37 - 1 + 1), sy, med, i, mrps);
+            qty[i] = 3 + rand() % (10 - 3 + 1);
+        }
 
-            //printing symptoms
-            for(int i=0;i<x;i++){
-                cout<<sy[i];
-                if(i!= x-1)cout<<", ";
-            }
-            cout<<". Please help me with some medicine!!"<<endl;
+        // printing symptoms
+        for (int i = 0; i < x; i++)
+        {
+            cout << sy[i];
+            if (i != x - 1)
+                cout << ", ";
+        }
+        cout << ". Please help me with some medicine!!" << endl;
 
-            //medicines by pharmacy
-            cout<<"Pharmacy: ";
-            for(int i=0;i<x;i++){
-                cout<<med[i];
-                if(i!= x-1)cout<<", ";
-            }
-            cout<<" might work for you."<<endl;
+        // medicines by pharmacy
+        cout << "Pharmacy: ";
+        for (int i = 0; i < x; i++)
+        {
+            cout << med[i];
+            Medicine u;
+            u.updateStock(med[i], qty[i]);
+            if (i != x - 1)
+                cout << ", ";
+        }
+        cout << " might work for you." << endl;
 
-            //generating bill
-            h.generate_bill(med,qty,x,mrps);
+        // generating bill
+        h.generate_bill(med, qty, x, mrps);
     }
 }
 
@@ -434,17 +454,15 @@ void person::random()
     {
         d = 1 + rand() % 30;
     }
-    date = y*10000+m*100+d;
+    date = y * 10000 + m * 100 + d;
 }
-
-
 
 void person::printdata()
 {
     cout << "\t\t\tFirst name :" << firstName << endl;
     cout << "\t\t\tLast name :" << lastName << endl;
     cout << "\t\t\tFull name :" << fullName << endl;
-    cout << "\t\t\tDate of order :" << d << "-"<< m << "-"<< y << endl;
+    cout << "\t\t\tDate of order :" << d << "-" << m << "-" << y << endl;
     // no. of sumptons
     ns = 0;
     for (int i = 0; i < 38; ++i)
@@ -470,7 +488,7 @@ class admin
 {
 public:
     //    admin();
-        Medicine ma;
+    Medicine ma;
 
     void menu()
     {
@@ -533,7 +551,7 @@ class receptionist
 {
 public:
     //    receptionist();
-        Medicine mr;
+    Medicine mr;
 
     void menu()
     {
