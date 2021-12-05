@@ -346,7 +346,6 @@ protected:
     int date, d, m, y;
     int amt = 0;
 
-
 public:
     int prescriptiom; // 0 or 1
     void Create();
@@ -357,7 +356,6 @@ public:
     void lasttrans();
     void showTransactionData();
     void showTransactionBydate();
-
 };
 static int cNo = 1;
 void person::Create()
@@ -475,98 +473,102 @@ void person::printdata()
     cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t|" << endl;
     cout << "|__________________________________________________________________________________________________|\n";
 }
-    void person::transcount(){
-        fstream file;
-            file.open("saving.txt", ios::in);
+void person::transcount()
+{
+    fstream file;
+    file.open("saving.txt", ios::in);
     if (!file)
     {
         cout << "\n\t\t\t No Data Is Present...";
     }
-    else{
-        int found=0;
-        string name = arrfn[rand()%26]+arrln[rand()%26];
+    else
+    {
+        int found = 0;
+        string name = arrfn[rand() % 26] + arrln[rand() % 26];
         cout << "\t\t\tname: " << name;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         while (!file.eof())
         {
-        if ( name == fullName ){
-            found++;
-        }
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+            if (name == fullName)
+            {
+                found++;
+            }
+            file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
         cout << "\n\t\t\tTotal no. of transactions : " << found << endl;
 
-        if(found==0){
-            cout << "\t\t\tno data of person "<< endl;
+        if (found == 0)
+        {
+            cout << "\t\t\tno data of person " << endl;
         }
         file.close();
     }
-    }
+}
 
-    void person :: lasttrans(){
-    string name = arrfn[rand()%26]+arrln[rand()%26];
-    int found=0;
+void person ::lasttrans()
+{
+    string name = arrfn[rand() % 26] + arrln[rand() % 26];
+    int found = 0;
     cout << "\t\t\tName : " << name << endl;
     fstream file;
-            file.open("saving.txt", ios::in);
+    file.open("saving.txt", ios::in);
     if (!file)
     {
         cout << "\n\t\t\t No Data Is Present...";
     }
-    else{
+    else
+    {
         cout << "\t\t\tname: " << name;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         while (!file.eof())
         {
-        if ( name == fullName ){
-            found++;
-            cout << " "<< found << " " << fullName << " " << d << "-" << m <<"-" << y << " " << amt ;  
-        }
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+            if (name == fullName)
+            {
+                found++;
+                cout << " " << found << " " << fullName << " " << d << "-" << m << "-" << y << " " << amt;
+            }
+            file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
         cout << "\n\t\t\tTotal no. of transactions : " << found << endl;
 
-        if(found==0){
-            cout << "\t\t\tno data of person "<< endl;
+        if (found == 0)
+        {
+            cout << "\t\t\tno data of person " << endl;
         }
         file.close();
     }
-
-
-
-    }
-    void person::last5(){
-     fstream file;
-     int count=0,h=0;
-    file.open("saving.txt",ios::in);
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+}
+void person::last5()
+{
+    fstream file;
+    int count = 0, h = 0;
+    file.open("saving.txt", ios::in);
+    file >> cNo >> fullName >> d >> m >> y >> date >> amt;
 
     while (!file.eof())
-        {
-            count++;
+    {
+        count++;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-        }
-        //cout<<count<<endl;
-        file.close();
-
-        file.open("saving.txt",ios::in);
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-
-        while (!file.eof())
-        {
-            h++;
-            if (h> count-5 && h <= count)
-            {
-            cout  << " " << fullName << " " << d << "-" << m <<"-" << y << " " << amt  << endl ;  
-            }
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-        
-        }
-
-        
-        file.close();
     }
-    void person::showTransactionData()
+    // cout<<count<<endl;
+    file.close();
+
+    file.open("saving.txt", ios::in);
+    file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+
+    while (!file.eof())
+    {
+        h++;
+        if (h > count - 5 && h <= count)
+        {
+            cout << " " << fullName << " " << d << "-" << m << "-" << y << " " << amt << endl;
+        }
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+    }
+
+    file.close();
+}
+void person::showTransactionData()
 {
     fstream file;
     file.open("saving.txt", ios::in);
@@ -577,23 +579,26 @@ void person::printdata()
     else
     {
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-        cout << "+------------------------------------------------------+"<<endl;
-        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
-        cout <<"|"<< setw(25) << "Name of the person"  <<"  |"<<setw(19)<<"Date   |" <<setw(8)<<"Amount|"<< "\n";
-        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
-        cout << "+------------------------------------------------------+"<<endl;
-        cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+        cout << "+------------------------------------------------------+" << endl;
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+        cout << "|" << setw(25) << "Name of the person"
+             << "  |" << setw(19) << "Date   |" << setw(8) << "Amount|"
+             << "\n";
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+        cout << "+------------------------------------------------------+" << endl;
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
         while (!file.eof())
         {
-            cout <<"|"<< setw(25) << fullName <<"  |"<<setw(7)<< d << "-" <<setw(2)<< m << "-" << y << "   |" <<setw(5)<< amt <<"  |"<< "\n";
-            cout <<"|"<<setw(28)<<"|"<<setw(19)<<"|"<<setw(8)<<"|"<<endl;
+            cout << "|" << setw(25) << fullName << "  |" << setw(7) << d << "-" << setw(2) << m << "-" << y << "   |" << setw(5) << amt << "  |"
+                 << "\n";
+            cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
             file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
     }
     file.close();
-    cout << "+------------------------------------------------------+"<<endl;
+    cout << "+------------------------------------------------------+" << endl;
 }
-    void person::showTransactionBydate()
+void person::showTransactionBydate()
 {
     fstream file;
     file.open("saving.txt", ios::in);
@@ -604,15 +609,24 @@ void person::printdata()
     else
     {
         int flag = 0;
-        int dat = 20190827;
+        int dat = 20200109;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-        cout << "\t\t\t-----------------------------------------------------------";
+        cout << "+------------------------------------------------------+" << endl;
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+        cout << "|" << setw(25) << "Name of the person"
+             << "  |" << setw(19) << "Date   |" << setw(8) << "Amount|"
+             << "\n";
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+        cout << "+------------------------------------------------------+" << endl;
+        cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
         while (!file.eof())
         {
             if (date == dat)
             {
                 flag = 1;
-                cout << fullName << setw(15) << "|" << d << "-" << m << "-" << y << " |" << amt << "\n";
+                cout << "|" << setw(25) << fullName << "  |" << setw(7) << d << "-" << setw(2) << m << "-" << y << "   |" << setw(5) << amt << "  |"
+                     << "\n";
+                cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
             }
             file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
@@ -622,7 +636,7 @@ void person::printdata()
         }
     }
     file.close();
-    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
+    cout << "+------------------------------------------------------+" << endl;
 }
 /*----------------------------------------------------------------------------------------------- */
 class admin
@@ -684,7 +698,7 @@ public:
         case 5:
             // show customer transactions according to date
             pa.showTransactionBydate();
-            goto Start ;
+            goto Start;
             break;
         case 9:
             break;
@@ -759,12 +773,12 @@ public:
     }
 };
 /*----------------------------------------------------------------------------------------------- */
-class customer 
+class customer
 {
 public:
     //    customer();
     void menu()
-    {   
+    {
         person cp;
         int option;
     Start:
