@@ -362,8 +362,8 @@ void person::Create()
     //
     if (prescriptiom == 1)
     {
-        cout << "Pharmacy: Do you have a prescription??" << endl;
-        cout << "Person: yes sir!  " << endl;
+        cout << "|Pharmacy: Do you have a prescription??" << endl;
+        cout << "|Person: yes sir!  " << endl;
         int k = 0; // k=0 => no prescrption; k=1 => have prescription
         int x = 3 + rand() % (5 - 2 + 1);
         string med[x];
@@ -374,7 +374,7 @@ void person::Create()
             b.genMed(1 + rand() % (37 - 1 + 1), med, i, mrps);
             qty[i] = 3 + rand() % (10 - 3 + 1);
         }
-        cout << "medicines in prescriptiom are :";
+        cout << "|medicines in prescriptiom are :";
         for (int i = 0; i < x; i++)
         {
             cout << med[i];
@@ -395,8 +395,8 @@ void person::Create()
         Billing h;
         // random symptoms generation
 
-        cout << "Pharmacy: Do you have a prescription??" << endl;
-        cout << "Person: No sir! But I am suffering from ";
+        cout << "|Pharmacy: Do you have a prescription??" << endl;
+        cout << "|Person: No sir! But I am suffering from ";
         for (int i = 0; i < x; i++)
         {
             h.gen_med(1 + rand() % (37 - 1 + 1), sy, med, i, mrps);
@@ -410,10 +410,10 @@ void person::Create()
             if (i != x - 1)
                 cout << ", ";
         }
-        cout << ". Please help me with some medicine!!" << endl;
+        cout << ". Please help me with some medicine!!" ;
 
         // medicines by pharmacy
-        cout << "Pharmacy: ";
+        cout << "|Pharmacy: ";
         for (int i = 0; i < x; i++)
         {
             cout << med[i];
@@ -461,10 +461,14 @@ void person::random()
 
 void person::printdata()
 {
-    cout << "\t\t\tFirst name :" << firstName << endl;
-    cout << "\t\t\tLast name :" << lastName << endl;
-    cout << "\t\t\tFull name :" << fullName << endl;
-    cout << "\t\t\tDate of order :" << d << "-" << m << "-" << y << endl;
+    cout << "|--------------------------------------------------------------------------------------------------|\n";
+
+    //cout << "\t\t\tFirst name :" << firstName;
+    //cout << "\t\t\tLast name :" << lastName << endl;
+    cout << "|\t\t\tFull name :" << fullName << "\t\t\t\t\t\t   |" << endl;
+    cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t   |" << endl;
+    cout << "|__________________________________________________________________________________________________|\n";
+
 
 }
 
