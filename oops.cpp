@@ -469,8 +469,8 @@ void person::printdata()
 
     // cout << "\t\t\tFirst name :" << firstName;
     // cout << "\t\t\tLast name :" << lastName << endl;
-    cout << "|\t\t\tFull name :" << fullName << "\t\t\t\t\t\t|" << endl;
-    cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t|" << endl;
+    cout << "|\t\t\tFull name :" << setw(20) << fullName << "\t\t\t\t\t\t   |" << endl;
+    cout << "|\t\t\tDate of order :" << setw(2) << d << "-" << setw(2) << m << "-" << y << "\t\t\t\t\t\t   |" << endl;
     cout << "|__________________________________________________________________________________________________|\n";
 }
 void person::transcount()
@@ -509,7 +509,7 @@ void person ::lasttrans()
 {
     string name = arrfn[rand() % 26] + arrln[rand() % 26];
     int found = 0;
-    cout << "\t\t\tName : " << name << endl;
+    // cout << "\t\t\tName : " << name << endl;
     fstream file;
     file.open("saving.txt", ios::in);
     if (!file)
@@ -518,7 +518,7 @@ void person ::lasttrans()
     }
     else
     {
-        cout << "\t\t\tname: " << name;
+        cout << "\t\t\tName: " << name;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         while (!file.eof())
         {
@@ -555,17 +555,26 @@ void person::last5()
 
     file.open("saving.txt", ios::in);
     file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-
+    cout << "+------------------------------------------------------+" << endl;
+    cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+    cout << "|" << setw(25) << "Name of the person"
+         << "  |" << setw(19) << "Date   |" << setw(8) << "Amount|"
+         << "\n";
+    cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
+    cout << "+------------------------------------------------------+" << endl;
+    cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
     while (!file.eof())
     {
         h++;
         if (h > count - 5 && h <= count)
         {
-            cout << " " << fullName << " " << d << "-" << m << "-" << y << " " << amt << endl;
+            cout << "|" << setw(25) << fullName << "  |" << setw(7) << d << "-" << setw(2) << m << "-" << y << "   |" << setw(5) << amt << "  |"
+                 << "\n";
+            cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
         }
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
     }
-
+    cout << "+------------------------------------------------------+" << endl;
     file.close();
 }
 void person::showTransactionData()
@@ -609,7 +618,7 @@ void person::showTransactionBydate()
     else
     {
         int flag = 0;
-        int dat = 20200109;
+        int dat = 20200817;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         cout << "+------------------------------------------------------+" << endl;
         cout << "|" << setw(28) << "|" << setw(19) << "|" << setw(8) << "|" << endl;
@@ -632,7 +641,7 @@ void person::showTransactionBydate()
         }
         if (flag == 0)
         {
-            cout << "\n\t\t\tNo tansactions on that day\n";
+            cout << "\n\t\t\tNo transactions on that day\n";
         }
     }
     file.close();
