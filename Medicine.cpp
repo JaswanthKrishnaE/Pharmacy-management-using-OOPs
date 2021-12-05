@@ -84,25 +84,26 @@ void Medicine::showMedicinesData()
     else
     {
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
-        cout << "\t-----------------------------------------------------------------";
-        cout << "\n\t|sNO"
-             << "|      Medicine name      "
-             << "| MRP "
-             << "|    MFG   "
-             << "|    EXP   "
-             << "|Stock|";
-        cout << "\n\t-----------------------------------------------------------------";
+        cout << "\t+------------------------------------------------------------------------------------------------+";
+        cout <<"\n\t"<< setw(7) << "|sNO  "
+             << setw(26) << "|      Medicine name      "
+             << setw(5) << "| MRP "
+             << setw(21) << "|Manufacturing Date"
+             << setw(21) << "|Expiry Date"
+             << setw(7) << "|Stock|";
+        cout << "\n\t-------------------------------------------------------------------------------------------------";
 
         while (!file.eof())
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                 << "\t|" << setw(3) << mid;
-            cout << "|" << setw(25) << name;
-            cout << "|" << setw(5) << mrp;
-            cout << "|" << setw(10) << mfg;
-            cout << "|" << setw(10) << exp;
-            cout << "|" << setw(5) << no_of_tablets << "|";
+                 << "\t|" << setw(5) << mid << "  ";
+            cout << "|" << setw(25) << name << "  ";
+            cout << "|" << setw(5) << mrp << "  ";
+            cout << "|" << setw(11) << (mfg % 100) << "/" << setw(2) << ((mfg / 100) % 100) << "/" << ((mfg / 10000)) << "  ";
+            cout << "|" << setw(11) << (exp % 100) << "/" << setw(2) << ((exp / 100) % 100) << "/" << ((exp / 10000)) << "  ";
+            cout << "|" << setw(5) << no_of_tablets << "  |\n";
+            cout << "\t|" << setw(8) << "  |" << setw(28) << "  |" << setw(8) << "  |" << setw(22) << "  |" << setw(22) << "  |" << setw(8) << "  |";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
         }
     }
