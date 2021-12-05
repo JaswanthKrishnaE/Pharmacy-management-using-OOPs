@@ -44,12 +44,13 @@ public:
     void showMedicinesData();
     void searchMedicine(char *s);
     void genenatePresMedicine();
+    void updateStock(string t, int qt);
 };
 
 void Medicine ::AddMedicineDetails()
 {
     fstream file;
-    mid = id++;
+    mid = ++id;
     cout << "Enter name of medicine :" << endl;
     cin >> name;
     mrp = 20 + rand() % 50;
@@ -93,7 +94,8 @@ void Medicine::showMedicinesData()
             cout << "|" << setw(25) << name;
             cout << "|" << setw(5) << mrp;
             cout << "|" << setw(10) << mfg;
-            cout << "|" << setw(10) << exp << "|";
+            cout << "|" << setw(10) << exp;
+            cout << "|" << setw(25) << no_of_sheets << "|";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
         }
     }
@@ -123,7 +125,40 @@ void Medicine ::searchMedicine(char *s)
             cout << "|" << setw(25) << mrp;
             cout << "|" << setw(25) << mfg;
             cout << "|" << setw(25) << exp;
+            cout << "|" << setw(25) << no_of_sheets;
         }
     }
     file.close();
+}
+
+void Medicine ::updateStock(string t, int qt)
+{
+    fstream file, file1;
+    file.open("medicines.txt", ios::in | ios ::binary);
+    file1.open("temp.txt", ios ::out | ios ::binary);
+    if (!file)
+    {
+        cout << "\n\t\t\tNo Data Is Present...........";
+    }
+    else
+
+    {
+        file.seekg(0);
+        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+        
+        while (!file.eof())
+        {
+            if (t == name)
+            {
+                no_of_sheets = no_of_sheets - qt;
+            }
+
+            file1 << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_sheets << "\n";
+            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
+        }
+    }
+    file1.close();
+    file.close();
+    remove("medicines.txt");
+    rename("temp.txt", "medicines.txt");
 }
