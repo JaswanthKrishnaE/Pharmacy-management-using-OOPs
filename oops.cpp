@@ -339,11 +339,13 @@ int Billing ::generate_bill(string med[], int qty[], int x, int mrps[])
 /*----------------------------------------------------------------------------------------------- */
 class person : public symptom
 {
-private:
+protected:
     string firstName;
     string lastName;
     string fullName;
     int date, d, m, y;
+    int amt = 0;
+
 
 public:
     int prescriptiom; // 0 or 1
@@ -355,7 +357,6 @@ public:
 static int cNo = 1;
 void person::Create()
 {
-    int amt = 0;
     random();
 
     printdata(); // remove
@@ -471,7 +472,7 @@ void person::printdata()
 }
     void person::transcount(){
         fstream file;
-            file.open("symptoms.txt", ios::in);
+            file.open("saving.txt", ios::in);
     if (!file)
     {
         cout << "\n\t\t\t No Data Is Present...";
@@ -484,10 +485,9 @@ void person::printdata()
         {
         if ( name == fullName ){
             found++;
-
         }
-        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         cout << "Total no. of transactions : " << found << endl;
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
         if(found==0){
             cout << "no data of person "<< endl;
