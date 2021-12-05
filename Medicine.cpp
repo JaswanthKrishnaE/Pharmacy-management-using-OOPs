@@ -42,13 +42,14 @@ public:
     float mrp;
     void AddMedicineDetails();
     void showMedicinesData();
-    void searchMedicine(char *s);
+    void searchMedicine(string s);
+    void updateStock(string t, int qt);
 };
 
 void Medicine ::AddMedicineDetails()
 {
     fstream file;
-    mid = id++;
+    mid = ++id;
     cout << "Enter name of medicine :" << endl;
     cin >> name;
     mrp = 20 + rand() % 50;
@@ -83,24 +84,33 @@ void Medicine::showMedicinesData()
     else
     {
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
-        cout << "\t\t\t-----------------------------------------------------------";
+        cout << "\t-----------------------------------------------------------------";
+        cout << "\n\t|sNO"
+             << "|      Medicine name      "
+             << "| MRP "
+             << "|    MFG   "
+             << "|    EXP   "
+             << "|Stock|";
+        cout << "\n\t-----------------------------------------------------------------";
+
         while (!file.eof())
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                 << "\t\t\t|" << setw(3) << mid;
+                 << "\t|" << setw(3) << mid;
             cout << "|" << setw(25) << name;
             cout << "|" << setw(5) << mrp;
             cout << "|" << setw(10) << mfg;
-            cout << "|" << setw(10) << exp << "|";
+            cout << "|" << setw(10) << exp;
+            cout << "|" << setw(5) << no_of_tablets << "|";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
         }
     }
     file.close();
-    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
+    cout << "\n\t-----------------------------------------------------------------" << endl;
 }
 
-void Medicine ::searchMedicine(char *s)
+void Medicine ::searchMedicine(string s)
 {
     ifstream file;
     file.open("medicines.txt", ios::in | ios ::binary);
@@ -113,7 +123,7 @@ void Medicine ::searchMedicine(char *s)
     {
         // file.read();
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
-        if (strcmp(s, symptom))
+        if (s == symptom)
         {
             cout.setf(ios::right);
             cout << "\n"
@@ -122,7 +132,40 @@ void Medicine ::searchMedicine(char *s)
             cout << "|" << setw(25) << mrp;
             cout << "|" << setw(25) << mfg;
             cout << "|" << setw(25) << exp;
+            cout << "|" << setw(25) << no_of_tablets;
         }
     }
     file.close();
+}
+
+void Medicine ::updateStock(string t, int qt)
+{
+    fstream file, file1;
+    file.open("medicines.txt", ios::in | ios ::binary);
+    file1.open("temp.txt", ios ::out | ios ::binary);
+    if (!file)
+    {
+        cout << "\n\t\t\tNo Data Is Present...........";
+    }
+    else
+
+    {
+        file.seekg(0);
+        file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
+
+        while (!file.eof())
+        {
+            if (t == name)
+            {
+                no_of_tablets = no_of_tablets - qt;
+            }
+
+            file1 << mid << "    " << name << "   " << mrp << "  " << mfg << "   " << exp << "   " << symptom << "   " << no_of_tablets << "\n";
+            file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
+        }
+    }
+    file1.close();
+    file.close();
+    remove("medicines.txt");
+    rename("temp.txt", "medicines.txt");
 }

@@ -484,8 +484,10 @@ void person::printdata()
         {
         if ( name == fullName ){
             found++;
-            
+
         }
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        cout << "Total no. of transactions : " << found << endl;
         }
         
 
