@@ -492,7 +492,7 @@ void person::printdata()
         cout << "\n\t\t\tTotal no. of transactions : " << found << endl;
 
         if(found==0){
-            cout << "no data of person "<< endl;
+            cout << "\t\t\tno data of person "<< endl;
         }
         file.close();
     }
