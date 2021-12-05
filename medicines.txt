@@ -5,14 +5,14 @@
 5    ibuprofen   47  20121022   20190808   headache   942
 6    acetaminophen   56  20121022   20190808   stomachache   911
 7    diclofenac   48  20121022   20190808   eyeburn   914
-8    Dramamine   57  20121022   20190808   vomiting   954
+8    Dramamine   57  20121022   20190808   vomiting   951
 9    Meclizine   45  20131112   20190808   dizziness   969
-10    Acetaminophen   95  20121022   20190808   sorethroat   951
+10    Acetaminophen   95  20121022   20190808   sorethroat   947
 11    Insulin   86  20121022   20190808   sugar   950
 12    Kaopectate   51  20121022   20190808   diarrhea   965
 13    Advil   89  20121022   20190808   muscleaches   909
 14    AconitumNapellus   68  20131112   20190808   breathingtrouble   921
-15    Zincovit   45  20121022   20190808   suddenvisionproblem   941
+15    Zincovit   45  20121022   20190808   suddenvisionproblem   933
 16    Vistaril   75  20121022   20190808   rashes   917
 17    Naproxen   86  20121022   20190808   swelling   897
 18    Ibuprofen   47  20131112   20190808   jointpains   901
@@ -28,7 +28,7 @@
 28    Metoprolol   41  20121022   20190808   heartpalpitations   823
 29    Methylcobalamin   57  20131112   20190808   palecomplexion   925
 30    Tetrahydrozoline   58  20121022   20190808   yelloweyes   884
-31    Lumify   45  20121022   20190808   redeyes   922
+31    Lumify   45  20121022   20190808   redeyes   916
 32    Minoxidil   54  20121022   20190808   hairloss   937
 33    Levocet-M   50  20121022   20190808   itching   929
 34    Metoprolol   65  20131112   20190808   bp   823

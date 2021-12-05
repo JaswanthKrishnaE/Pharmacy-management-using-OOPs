@@ -198,7 +198,7 @@ void symptom::searchs() // search data of symptom
 
         if (found == 0)
         {
-            cout << "\n\t\t\tsymptom Roll No. Not Found...";
+            cout << "\n\t\t\tsymptom  No. Not Found...";
         }
         file.close();
     }
@@ -350,6 +350,7 @@ public:
     void Create();
     void random();
     void printdata();
+    void transcount();
 };
 static int cNo = 1;
 void person::Create()
@@ -468,7 +469,29 @@ void person::printdata()
     cout << "|\t\t\tDate of order :" << d << "-" << m << "-" << y << "\t\t\t\t\t\t|" << endl;
     cout << "|__________________________________________________________________________________________________|\n";
 }
+    void person::transcount(){
+        fstream file;
+            file.open("symptoms.txt", ios::in);
+    if (!file)
+    {
+        cout << "\n\t\t\t No Data Is Present...";
+    }
+    else{
+        int found=0;
+        string name = arrfn[rand()%26]+arrln[rand()%26];
+        file >> cNo >> fullName >> d >> m >> y >> date >> amt;
+        while (!file.eof)
+        {
+        if ( name == fullName ){
+            found++;
+            
+        }
+        }
+        
 
+    }
+
+    }
 /*----------------------------------------------------------------------------------------------- */
 class admin
 {
@@ -588,7 +611,7 @@ public:
     }
 };
 /*----------------------------------------------------------------------------------------------- */
-class customer
+class customer 
 {
 public:
     //    customer();
@@ -616,6 +639,8 @@ public:
 
         case 1:
             // Total Transactions Made
+            person co;
+            co.transcount();
             goto Start;
             break;
 
