@@ -518,14 +518,14 @@ void person ::lasttrans()
     }
     else
     {
-        cout << "\t\t\tName: " << name;
+        cout << "\t\t\tName: " << name<<endl;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         while (!file.eof())
         {
             if (name == fullName)
             {
                 found++;
-                cout << " " << found << " " << fullName << " " << d << "-" << m << "-" << y << " " << amt;
+                cout << "\t\t\t" << found << " " << fullName << " " << d << "-" << m << "-" << y << " " << amt;
             }
             file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
