@@ -480,15 +480,17 @@ void person::printdata()
     else{
         int found=0;
         string name = arrfn[rand()%26]+arrln[rand()%26];
+        cout << "\t\t\tname: " << name;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         while (!file.eof())
         {
         if ( name == fullName ){
             found++;
         }
-        cout << "Total no. of transactions : " << found << endl;
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         }
+        cout << "\n\t\t\tTotal no. of transactions : " << found << endl;
+
         if(found==0){
             cout << "no data of person "<< endl;
         }
