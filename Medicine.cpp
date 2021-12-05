@@ -85,22 +85,25 @@ void Medicine::showMedicinesData()
     else
     {
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
-        cout << "\t\t\t-----------------------------------------------------------";
+        cout << "\t-----------------------------------------------------------------";
+        cout << "\n\t|sNO" <<"|      Medicine name      " << "| MRP "<< "|    MFG   "<< "|    EXP   "<<"|Stock|";
+        cout << "\n\t-----------------------------------------------------------------";
+
         while (!file.eof())
         {
             cout.setf(ios::adjustfield);
             cout << "\n"
-                 << "\t\t\t|" << setw(3) << mid;
+                 << "\t|" << setw(3) << mid;
             cout << "|" << setw(25) << name;
             cout << "|" << setw(5) << mrp;
             cout << "|" << setw(10) << mfg;
             cout << "|" << setw(10) << exp;
-            cout << "|" << setw(25) << no_of_sheets << "|";
+            cout << "|" << setw(5) << no_of_sheets << "|";
             file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_sheets;
         }
     }
     file.close();
-    cout << "\n\t\t\t-----------------------------------------------------------" << endl;
+    cout << "\n\t-----------------------------------------------------------------" << endl;
 }
 
 void Medicine ::searchMedicine(char *s)
