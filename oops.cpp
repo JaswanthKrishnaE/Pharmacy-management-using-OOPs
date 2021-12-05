@@ -480,7 +480,7 @@ void person::printdata()
         int found=0;
         string name = arrfn[rand()%26]+arrln[rand()%26];
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
-        while (!file.eof)
+        while (!file.eof())
         {
         if ( name == fullName ){
             found++;
@@ -489,8 +489,10 @@ void person::printdata()
         file >> cNo >> fullName >> d >> m >> y >> date >> amt;
         cout << "Total no. of transactions : " << found << endl;
         }
-        
-
+        if(found==0){
+            cout << "no data of person "<< endl;
+        }
+        file.close();
     }
 
     }
@@ -618,7 +620,8 @@ class customer
 public:
     //    customer();
     void menu()
-    {
+    {   
+        person cp;
         int option;
     Start:
         cout << "\n================================================================================================" << endl;
@@ -641,8 +644,7 @@ public:
 
         case 1:
             // Total Transactions Made
-            person co;
-            co.transcount();
+            cp.transcount();
             goto Start;
             break;
 
