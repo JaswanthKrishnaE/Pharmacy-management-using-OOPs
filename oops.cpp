@@ -344,8 +344,7 @@ private:
     string fullName;
     int date, d, m, y;
 
-    int ns = 0;
-    int arrS[36] = {0};
+
 
 public:
     int prescriptiom; // 0 or 1
@@ -357,10 +356,6 @@ public:
 void person::Create()
 {
     random();
-    for (int i = 0; i < 38; ++i)
-    {
-        arrS[i] = 0;
-    }
 
     printdata(); // remove
     prescriptiom = rand() % 2;
@@ -432,6 +427,13 @@ void person::Create()
         // generating bill
         h.generate_bill(med, qty, x, mrps);
     }
+    // save
+    fstream save;
+    save.open("saving.txt", ios::app | ios::out);
+    save << " " << firstName << " " <<lastName <<" " << fullName << " " << d << " " << m <<" " << y  <<" " <<date << " " ;
+    save.close();
+
+
 }
 
 void person::random()
@@ -463,24 +465,7 @@ void person::printdata()
     cout << "\t\t\tLast name :" << lastName << endl;
     cout << "\t\t\tFull name :" << fullName << endl;
     cout << "\t\t\tDate of order :" << d << "-" << m << "-" << y << endl;
-    // no. of sumptons
-    ns = 0;
-    for (int i = 0; i < 38; ++i)
-    {
-        if (arrS[i] == 1)
-        {
-            ns++;
-        }
-    }
-    cout << "\t\t\tNo. of symptoms :" << ns << endl;
-    // print symptoms
-    for (int i = 0; i < 36; ++i)
-    {
-        if (arrS[i] == 1)
-        {
-            finds(i);
-        }
-    }
+
 }
 
 /*----------------------------------------------------------------------------------------------- */
