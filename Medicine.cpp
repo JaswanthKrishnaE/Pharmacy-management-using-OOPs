@@ -84,13 +84,13 @@ void Medicine::showMedicinesData()
     else
     {
         file >> mid >> name >> mrp >> mfg >> exp >> symptom >> no_of_tablets;
-        cout << "\t+------------------------------------------------------------------------------------------------+";
-        cout <<"\n\t"<< setw(7) << "|sNO  "
-             << setw(26) << "|      Medicine name      "
-             << setw(5) << "| MRP "
-             << setw(21) << "|Manufacturing Date"
-             << setw(21) << "|Expiry Date"
-             << setw(7) << "|Stock|";
+        cout << "\t+-----------------------------------------------------------------------------------------------+";
+        cout <<"\n\t"<< setw(5) << "|sNO    "
+             << setw(27) << "|      Medicine name        "
+             << setw(6) << "| MRP   "
+             << setw(19) << "|  Manufacturing Date "
+             << setw(13) << "|   Expiry Date       "
+             << setw(7) << "|Stock  |";
         cout << "\n\t-------------------------------------------------------------------------------------------------";
 
         while (!file.eof())
@@ -108,7 +108,7 @@ void Medicine::showMedicinesData()
         }
     }
     file.close();
-    cout << "\n\t-----------------------------------------------------------------" << endl;
+    cout << "\n\t+-----------------------------------------------------------------------------------------------+";
 }
 
 void Medicine ::searchMedicine(string s)
