@@ -1,7 +1,12 @@
 This project is made to simplify work done at pharmacy 
+*Download the zip file
+*cpp codes and txt files are saved in codes sunfolder
+*run oops.cpp
+
+|oops.cpp|
 This code is divided into 3 parts 
 1.Admin
-2.Receptionis
+2.Receptionist
 3.Coustomer
 
 In admin we have
