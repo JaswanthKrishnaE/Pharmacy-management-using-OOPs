@@ -38,10 +38,10 @@ In reception we have
   Printing latest 5 transactions done which are saved in file
 In customer we have 
   •	Total transaction no. of a person
-  #done by karthik
+  #done by Jaswanth krishna
   No. Of transaction done by a particular person
   •	Transactions of the person
-  #done by karthik
+  #done by Jaswanth krishna
   Printing the transaction details done by a particular person
 
 

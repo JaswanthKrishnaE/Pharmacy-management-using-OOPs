@@ -663,7 +663,7 @@ void person::showTransactionBydate()
     cout << "+------------------------------------------------------+" << endl;
 }
 /*----------------------------------------------------------------------------------------------- */
-class admin
+class admin : public person
 {
 public:
     //    admin();
@@ -674,7 +674,6 @@ public:
         int option;
         Medicine ma;
         symptom SYMP;
-        person pa;
     Start:
         cout << "\n================================================================================================" << endl;
         cout << "\t\t\t-----------------------------" << endl;
@@ -699,7 +698,7 @@ public:
 
         case 1:
             // creating data
-            pa.Create();
+            Create();
             goto Start;
             break;
 
@@ -716,12 +715,12 @@ public:
             break;
         case 4:
             // customer transactions
-            pa.showTransactionData();
+            showTransactionData();
             goto Start;
             break;
         case 5:
             // show customer transactions according to date
-            pa.showTransactionBydate();
+            showTransactionBydate();
             goto Start;
             break;
         case 9:
@@ -737,16 +736,14 @@ public:
     }
 };
 /*----------------------------------------------------------------------------------------------- */
-class receptionist
+class receptionist : public person,public Medicine
 {
 public:
     //    receptionist();
-    Medicine mr;
 
     void menu()
     {
         int option;
-        person pr;
     Start:
         cout << "\n================================================================================================" << endl;
         cout << "\t\t\t-----------------------------" << endl;
@@ -769,18 +766,18 @@ public:
 
         case 1:
             // creating data
-            pr.Create();
+            Create();
             goto Start;
             break;
 
         case 2:
-            mr.showMedicinesData();
+            showMedicinesData();
             // medicine data
             goto Start;
             break;
 
         case 3:
-            pr.last5();
+            last5();
             goto Start;
             break;
         case 9:
@@ -797,13 +794,12 @@ public:
     }
 };
 /*----------------------------------------------------------------------------------------------- */
-class customer
+class customer : public person 
 {
 public:
     //    customer();
     void menu()
     {
-        person cp;
         int option;
     Start:
         cout << "\n================================================================================================" << endl;
@@ -826,13 +822,13 @@ public:
 
         case 1:
             // Total Transactions Made
-            cp.transcount();
+            transcount();
             goto Start;
             break;
 
         case 2:
             // Latest Transaction
-            cp.lasttrans();
+            lasttrans();
             goto Start;
             break;
 
